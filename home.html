@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damon Sheridan | Production Sound | Waterforge — Brisbane, Australia</title>
+    <meta name="description" content="Damon Sheridan is a production sound technician with 43+ credits across feature film, television, and documentary. Based in Brisbane, available worldwide. Waterforge.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-deep: #0c0c0e;
+            --bg-surface: #141416;
+            --bg-elevated: #1c1c20;
+            --text-primary: #f0ece4;
+            --text-secondary: #8a8680;
+            --text-muted: #5a5650;
+            --accent: #c9a96e;
+            --accent-glow: rgba(201, 169, 110, 0.12);
+            --accent-border: rgba(201, 169, 110, 0.25);
+            --border: rgba(240, 236, 228, 0.06);
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-deep);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 7rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Label */
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .section-heading {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+
+        /* Film Grain Overlay */
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        /* ========== NAVIGATION ========== */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1.25rem 0;
+            background: rgba(12, 12, 14, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        nav.scrolled {
+            border-bottom-color: var(--border);
+            background: rgba(12, 12, 14, 0.92);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        /* ========== FILM CREW FIGURES ========== */
+        .nav-crew {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            display: flex;
+            gap: 2px;
+            pointer-events: none;
+            transition: none;
+        }
+
+        .crew-fig {
+            width: 18px;
+            height: 30px;
+            position: relative;
+            opacity: 0.32;
+            transition: opacity 0.3s;
+        }
+
+        nav.scrolled .crew-fig { opacity: 0.48; }
+
+        .crew-fig svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .crew-fig svg * {
+            stroke: var(--accent);
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        /* Filled elements */
+        .crew-fig .body-fill { fill: var(--accent); stroke: none; opacity: 0.12; }
+        .crew-fig .head-fill { fill: var(--accent); stroke: var(--accent); stroke-width: 1; }
+
+        /* Flip all figures when scrolling up */
+        .nav-crew.facing-left { transform: translateY(-50%) scaleX(-1); }
+
+        /* --- Walk cycle with knees --- */
+        /* Thighs pivot at hip */
+        .crew-fig .uleg-l { transform-origin: 8.5px 17px; animation: hipA 0.6s cubic-bezier(0.45,0.05,0.55,0.95) infinite paused; }
+        .crew-fig .uleg-r { transform-origin: 11.5px 17px; animation: hipB 0.6s cubic-bezier(0.45,0.05,0.55,0.95) infinite paused; }
+        /* Shins pivot at knee — nested inside thigh group */
+        .crew-fig .lleg-l { transform-origin: 7px 22px; animation: kneeA 0.6s cubic-bezier(0.45,0.05,0.55,0.95) infinite paused; }
+        .crew-fig .lleg-r { transform-origin: 13px 22px; animation: kneeB 0.6s cubic-bezier(0.45,0.05,0.55,0.95) infinite paused; }
+        /* Knee dot — subtle joint marker */
+        .crew-fig .knee-dot { opacity: 0.35; }
+        /* Arms pivot at shoulder */
+        .crew-fig .uarm-l { transform-origin: 7px 9.5px; animation: shoulderA 0.6s cubic-bezier(0.45,0.05,0.55,0.95) infinite paused; }
+        .crew-fig .uarm-r { transform-origin: 13px 9.5px; animation: shoulderB 0.6s cubic-bezier(0.45,0.05,0.55,0.95) infinite paused; }
+
+        .nav-crew.walking .crew-fig .uleg-l,
+        .nav-crew.walking .crew-fig .uleg-r,
+        .nav-crew.walking .crew-fig .lleg-l,
+        .nav-crew.walking .crew-fig .lleg-r,
+        .nav-crew.walking .crew-fig .uarm-l,
+        .nav-crew.walking .crew-fig .uarm-r {
+            animation-play-state: running;
+        }
+
+        /* Boom op: arms hold pole, no swing */
+        .crew-fig.fig-boom .uarm-l,
+        .crew-fig.fig-boom .uarm-r { animation: none; }
+
+        /* Camera op: arms hold camera, no swing */
+        .crew-fig.fig-cam .uarm-l,
+        .crew-fig.fig-cam .uarm-r { animation: none; }
+
+        /* Hip swing — gentle stride */
+        @keyframes hipA {
+            0%   { transform: rotate(-8deg); }
+            50%  { transform: rotate(8deg); }
+            100% { transform: rotate(-8deg); }
+        }
+        @keyframes hipB {
+            0%   { transform: rotate(8deg); }
+            50%  { transform: rotate(-8deg); }
+            100% { transform: rotate(8deg); }
+        }
+        /* Knee bend — subtle lift on the trailing leg */
+        @keyframes kneeA {
+            0%   { transform: rotate(10deg); }
+            25%  { transform: rotate(2deg); }
+            50%  { transform: rotate(0deg); }
+            75%  { transform: rotate(4deg); }
+            100% { transform: rotate(10deg); }
+        }
+        @keyframes kneeB {
+            0%   { transform: rotate(0deg); }
+            25%  { transform: rotate(4deg); }
+            50%  { transform: rotate(10deg); }
+            75%  { transform: rotate(2deg); }
+            100% { transform: rotate(0deg); }
+        }
+        /* Arm swing — gentle counter-balance */
+        @keyframes shoulderA {
+            0%   { transform: rotate(6deg); }
+            50%  { transform: rotate(-6deg); }
+            100% { transform: rotate(6deg); }
+        }
+        @keyframes shoulderB {
+            0%   { transform: rotate(-6deg); }
+            50%  { transform: rotate(6deg); }
+            100% { transform: rotate(-6deg); }
+        }
+
+        /* Boom pole sway — pivots at grip point */
+        .fig-boom .boom-pole {
+            transform-origin: 14px 1px;
+            animation: boomSway 1.4s ease-in-out infinite alternate paused;
+        }
+        .nav-crew.walking .fig-boom .boom-pole {
+            animation-play-state: running;
+        }
+        @keyframes boomSway {
+            0%   { transform: rotate(-1.5deg); }
+            100% { transform: rotate(1.5deg); }
+        }
+
+        /* Body bob while walking */
+        .nav-crew.walking .crew-fig svg {
+            animation: bodyBob 0.3s cubic-bezier(0.45,0.05,0.55,0.95) infinite alternate;
+        }
+        @keyframes bodyBob {
+            0%   { transform: translateY(0.2px); }
+            100% { transform: translateY(-0.2px); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-crew { display: none; }
+        }
+
+        .wordmark {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--accent);
+            transition: transform 0.3s, opacity 0.3s;
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(6.5px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-6.5px) rotate(-45deg);
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(12, 12, 14, 0.97);
+            z-index: 99;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .mobile-overlay.open { display: flex; }
+
+        .mobile-overlay a {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: color 0.2s;
+        }
+
+        .mobile-overlay a:hover { color: var(--accent); }
+
+        .mobile-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 0 6rem;
+            position: relative;
+        }
+
+        .hero-role {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 400;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            font-weight: 800;
+            line-height: 0.95;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-bio {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            max-width: 540px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-rule {
+            width: 48px;
+            height: 1px;
+            background: var(--accent);
+            border: none;
+            margin-bottom: 2rem;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            margin-bottom: 3rem;
+        }
+
+        .highlight-card {
+            background: var(--bg-deep);
+            padding: 1.5rem;
+            transition: background 0.2s;
+        }
+
+        .highlight-card:hover {
+            background: var(--bg-surface);
+        }
+
+        .highlight-project {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 0.35rem;
+        }
+
+        .highlight-role {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-context {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .highlight-context .accent {
+            color: var(--accent);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background: var(--accent);
+            color: var(--bg-deep);
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #d4b87a;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background: transparent;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border: 1px solid var(--border);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ========== SELECTED WORK ========== */
+        .work-item {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: start;
+            transition: border-color 0.3s;
+            position: relative;
+        }
+
+        .work-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .work-item:hover::before { opacity: 1; }
+
+        .work-item:last-child { border-bottom: none; }
+
+        .work-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+        }
+
+        .work-meta {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .work-meta .accent { color: var(--accent); }
+
+        .work-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .work-badge {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--accent-border);
+            color: var(--accent);
+            white-space: nowrap;
+            align-self: center;
+        }
+
+        .work-credits {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .work-credits span {
+            color: var(--text-secondary);
+        }
+
+        /* ========== FILMOGRAPHY TABLE ========== */
+        .filmography-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            text-align: left;
+            margin-top: 2rem;
+        }
+
+        .filmography-table thead th {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 1rem 1rem 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .filmography-table tbody td {
+            padding: 1rem 1rem 1rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            vertical-align: middle;
+        }
+
+        .filmography-table tbody tr {
+            transition: background 0.2s;
+        }
+
+        .filmography-table tbody tr:hover td {
+            color: var(--text-primary);
+        }
+
+        .film-name {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .film-award-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .film-type-badge {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .filmography-link {
+            display: inline-block;
+            margin-top: 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: opacity 0.2s;
+        }
+
+        .filmography-link:hover { opacity: 0.7; }
+
+        /* ========== ABOUT ========== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 4rem;
+            align-items: start;
+            margin-top: 2rem;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-text p:first-of-type {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            font-weight: 300;
+        }
+
+        .about-photo-placeholder {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border: 1px dashed var(--accent-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-surface);
+        }
+
+        .about-photo-placeholder span {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .about-photo-placeholder .placeholder-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            opacity: 0.4;
+        }
+
+        .about-education {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-education h3 {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .edu-item {
+            margin-bottom: 0.75rem;
+        }
+
+        .edu-item .edu-school {
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .edu-item .edu-detail {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== SERVICES ========== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border);
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-deep);
+            padding: 2.5rem;
+            transition: background 0.2s;
+            position: relative;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover {
+            background: var(--bg-surface);
+        }
+
+        .service-card:hover::after { opacity: 1; }
+
+        .service-icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+            opacity: 0.7;
+        }
+
+        .service-name {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ========== CONTACT ========== */
+        .contact-section {
+            text-align: center;
+            padding: 8rem 0;
+            border-bottom: none;
+        }
+
+        .contact-section .section-label {
+            display: block;
+            text-align: center;
+        }
+
+        .contact-heading {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-sub {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .contact-email {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--accent-border);
+            transition: background 0.2s, color 0.2s;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-email:hover {
+            background: var(--accent);
+            color: var(--bg-deep);
+        }
+
+        .contact-socials {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .contact-socials a {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+
+        .contact-socials a:hover { color: var(--accent); }
+
+        .contact-location {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 2rem;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #08080a;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-wordmark {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--accent); }
+
+        /* ========== SCROLL ANIMATIONS ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .container { padding: 0 1.5rem; }
+            .section { padding: 4rem 0; }
+
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+
+            .hero { padding: 6rem 0 3rem; min-height: auto; }
+            .hero h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
+            .hero-bio { font-size: 0.95rem; }
+
+            .highlights { grid-template-columns: repeat(2, 1fr); }
+            .highlight-card { padding: 1.25rem; }
+            .highlight-project { font-size: 0.95rem; }
+
+            .work-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .work-item::before { display: none; }
+            .work-badge { align-self: start; }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-photo-placeholder {
+                max-width: 280px;
+                order: -1;
+            }
+
+            .services-grid { grid-template-columns: 1fr; }
+            .service-card { padding: 2rem 1.5rem; }
+
+            /* Filmography: hide type column, allow horizontal scroll */
+            .filmography-table th:nth-child(4),
+            .filmography-table td:nth-child(4) { display: none; }
+
+            .contact-section { padding: 5rem 0; }
+            .contact-heading { font-size: clamp(1.6rem, 5vw, 2.4rem); }
+            .contact-email { padding: 0.85rem 1.5rem; font-size: 0.85rem; }
+            .contact-socials { gap: 1.5rem; }
+
+            footer { padding: 2rem 0; }
+            .footer-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 1.25rem; }
+
+            .hero { padding: 5rem 0 2.5rem; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero-role { font-size: 0.6rem; }
+            .hero-tagline { font-size: 0.95rem; }
+            .hero-bio { font-size: 0.88rem; max-width: 100%; }
+            .hero-actions { flex-direction: column; }
+            .btn-primary, .btn-secondary { text-align: center; width: 100%; }
+
+            .highlights { grid-template-columns: 1fr 1fr; gap: 1px; }
+            .highlight-card { padding: 1rem; }
+            .highlight-project { font-size: 0.88rem; }
+            .highlight-role { font-size: 0.55rem; }
+            .highlight-context { font-size: 0.72rem; }
+
+            .section-heading { font-size: clamp(1.5rem, 6vw, 2rem); }
+            .work-title { font-size: 1.2rem; }
+            .work-meta { font-size: 0.65rem; }
+
+            /* Filmography: scrollable wrapper + hide role on very small */
+            .filmography-table { font-size: 0.78rem; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .filmography-table thead { display: table-header-group; }
+            .filmography-table tbody { display: table-row-group; }
+            .filmography-table tr { display: table-row; }
+            .filmography-table th, .filmography-table td { white-space: nowrap; padding: 0.75rem 0.75rem 0.75rem 0; }
+            .filmography-table th:nth-child(3),
+            .filmography-table td:nth-child(3) { display: none; }
+
+            .about-text p { font-size: 0.9rem; }
+
+            .service-card { padding: 1.5rem 1.25rem; }
+            .service-card h3 { font-size: 1rem; }
+            .service-card p { font-size: 0.85rem; }
+
+            .contact-section { padding: 4rem 0; }
+            .contact-heading { font-size: 1.5rem; }
+            .contact-sub { font-size: 0.88rem; }
+            .contact-email { padding: 0.75rem 1.25rem; font-size: 0.78rem; word-break: break-all; }
+            .contact-socials { gap: 1.25rem; flex-wrap: wrap; justify-content: center; }
+            .contact-location { font-size: 0.6rem; }
+
+            .mobile-overlay a { font-size: 1.5rem; }
+            .mobile-overlay { gap: 2rem; }
+        }
+
+        @media (max-width: 360px) {
+            .container { padding: 0 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .highlights { grid-template-columns: 1fr; }
+            .highlight-card { padding: 1rem; }
+            .contact-email { font-size: 0.72rem; padding: 0.7rem 1rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+            html { scroll-behavior: auto; }
+            .grain { display: none; }
+            .nav-crew { display: none; }
+        }
+
+        /* Focus styles */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Damon Sheridan",
+        "jobTitle": "Production Sound Technician",
+        "url": "https://waterforge.com.au",
+        "sameAs": [
+            "https://www.imdb.com/name/nm7138208/",
+            "https://www.linkedin.com/in/damon-sheridan/",
+            "https://www.youtube.com/@waterforge5468"
+        ],
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Waterforge",
+            "url": "https://waterforge.com.au"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Brisbane",
+            "addressRegion": "Queensland",
+            "addressCountry": "AU"
+        }
+    }
+    </script>
+</head>
+<body>
+
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Mobile Overlay Nav -->
+    <div class="mobile-overlay" id="mobileNav" role="dialog" aria-label="Navigation menu">
+        <button class="mobile-close" id="mobileClose" aria-label="Close navigation"><i class="fas fa-times"></i></button>
+        <a href="#work" class="mobile-nav-link">Work</a>
+        <a href="#filmography" class="mobile-nav-link">Filmography</a>
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#services" class="mobile-nav-link">Services</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-inner">
+            <a href="#" class="wordmark">Waterforge</a>
+            <!-- Film crew figures -->
+            <div class="nav-crew" id="navCrew" aria-hidden="true">
+                <!-- Boom Operator (arms raised holding pole that extends over entire crew) -->
+                <div class="crew-fig fig-boom">
+                    <svg viewBox="0 0 18 30">
+                        <!-- Body fill (torso shape) -->
+                        <path class="body-fill" d="M7,9.5 L13,9.5 L12.5,17 L7.5,17 Z"/>
+                        <!-- Head -->
+                        <circle class="head-fill" cx="10" cy="4" r="2.8"/>
+                        <!-- Neck -->
+                        <line x1="10" y1="6.8" x2="10" y2="8.5" stroke-width="1.1"/>
+                        <!-- Torso outline -->
+                        <path d="M7,9.5 Q10,8.5 13,9.5 L12.5,17 L7.5,17 Z" stroke-width="0.8"/>
+                        <!-- Left leg: thigh pivots at hip, shin pivots at knee -->
+                        <g class="uleg-l">
+                            <line x1="8.5" y1="17" x2="7" y2="22" stroke-width="1.4"/>
+                            <circle class="knee-dot" cx="7" cy="22" r="0.4" stroke-width="0.4"/>
+                            <g class="lleg-l">
+                                <line x1="7" y1="22" x2="5.5" y2="28" stroke-width="1.2"/>
+                                <line x1="5.5" y1="28" x2="4" y2="28.5" stroke-width="1"/>
+                            </g>
+                        </g>
+                        <!-- Right leg -->
+                        <g class="uleg-r">
+                            <line x1="11.5" y1="17" x2="13" y2="22" stroke-width="1.4"/>
+                            <circle class="knee-dot" cx="13" cy="22" r="0.4" stroke-width="0.4"/>
+                            <g class="lleg-r">
+                                <line x1="13" y1="22" x2="14" y2="28" stroke-width="1.2"/>
+                                <line x1="14" y1="28" x2="15.5" y2="28.5" stroke-width="1"/>
+                            </g>
+                        </g>
+                        <!-- Left arm (rear): shoulder→elbow back/down, forearm bends up to grip pole behind head -->
+                        <g class="uarm-l">
+                            <line x1="7" y1="9.5" x2="4.5" y2="7.5" stroke-width="1.2"/>
+                            <line x1="4.5" y1="7.5" x2="7" y2="2" stroke-width="1"/>
+                        </g>
+                        <!-- Right arm (front): raised high, straighter reach up to pole -->
+                        <g class="uarm-r">
+                            <line x1="13" y1="9.5" x2="14.5" y2="5" stroke-width="1.2"/>
+                            <line x1="14.5" y1="5" x2="14" y2="1" stroke-width="1"/>
+                        </g>
+                        <!-- Boom pole: grip at top of right hand, extends across entire crew -->
+                        <!-- 18px wide fig + 2px gap = 20px pitch. Pole reaches ~3.5 figs right -->
+                        <g class="boom-pole">
+                            <line x1="14" y1="1" x2="74" y2="-10" stroke-width="0.6"/>
+                            <!-- Shock mount / suspension bracket at end of pole -->
+                            <line x1="73.5" y1="-10" x2="73.5" y2="-8.5" stroke-width="0.4"/>
+                            <line x1="74.5" y1="-10" x2="74.5" y2="-8.5" stroke-width="0.4"/>
+                            <line x1="73" y1="-8.5" x2="75" y2="-8.5" stroke-width="0.4"/>
+                            <!-- Zeppelin/blimp windscreen: 60% below pole, 40% above -->
+                            <ellipse cx="74" cy="-6.2" rx="1.8" ry="3.8" stroke-width="0.5"/>
+                            <!-- Zeppelin cage ribs -->
+                            <line x1="72.2" y1="-7" x2="75.8" y2="-7" stroke-width="0.25"/>
+                            <line x1="72.4" y1="-5.2" x2="75.6" y2="-5.2" stroke-width="0.25"/>
+                            <line x1="73" y1="-3.5" x2="75" y2="-3.5" stroke-width="0.25"/>
+                        </g>
+                    </svg>
+                </div>
+                <!-- Camera Operator (hunched with shoulder-mounted camera) -->
+                <div class="crew-fig fig-cam">
+                    <svg viewBox="0 0 18 30">
+                        <!-- Body fill -->
+                        <path class="body-fill" d="M6.5,9.5 L13.5,9.5 L13,17 L7,17 Z"/>
+                        <!-- Head (slightly forward for peering through viewfinder) -->
+                        <circle class="head-fill" cx="11" cy="4" r="2.8"/>
+                        <!-- Neck (angled forward) -->
+                        <line x1="11" y1="6.8" x2="10.5" y2="8.5" stroke-width="1.1"/>
+                        <!-- Torso outline -->
+                        <path d="M6.5,9.5 Q10,8.5 13.5,9.5 L13,17 L7,17 Z" stroke-width="0.8"/>
+                        <!-- Left leg: thigh + knee + shin -->
+                        <g class="uleg-l">
+                            <line x1="8" y1="17" x2="6.5" y2="22" stroke-width="1.4"/>
+                            <circle class="knee-dot" cx="6.5" cy="22" r="0.4" stroke-width="0.4"/>
+                            <g class="lleg-l">
+                                <line x1="6.5" y1="22" x2="5.5" y2="28" stroke-width="1.2"/>
+                                <line x1="5.5" y1="28" x2="4" y2="28.5" stroke-width="1"/>
+                            </g>
+                        </g>
+                        <!-- Right leg -->
+                        <g class="uleg-r">
+                            <line x1="12" y1="17" x2="13.5" y2="22" stroke-width="1.4"/>
+                            <circle class="knee-dot" cx="13.5" cy="22" r="0.4" stroke-width="0.4"/>
+                            <g class="lleg-r">
+                                <line x1="13.5" y1="22" x2="14.5" y2="28" stroke-width="1.2"/>
+                                <line x1="14.5" y1="28" x2="16" y2="28.5" stroke-width="1"/>
+                            </g>
+                        </g>
+                        <!-- Left arm (forward, supporting camera underneath) -->
+                        <g class="uarm-l">
+                            <line x1="7" y1="10" x2="6" y2="12" stroke-width="1.2"/>
+                            <line x1="6" y1="12" x2="8" y2="11" stroke-width="1"/>
+                        </g>
+                        <!-- Right arm (up and back, gripping camera rear) -->
+                        <g class="uarm-r">
+                            <line x1="13" y1="10" x2="15" y2="8" stroke-width="1.2"/>
+                            <line x1="15" y1="8" x2="16" y2="7" stroke-width="1"/>
+                        </g>
+                        <!-- Camera body (on right shoulder) -->
+                        <rect x="13" y="5.5" width="6" height="4" rx="0.7" stroke-width="0.8"/>
+                        <!-- Lens barrel -->
+                        <rect x="19" y="6.2" width="3" height="2.6" rx="1.3" stroke-width="0.7"/>
+                        <!-- Lens glass -->
+                        <circle cx="22.2" cy="7.5" r="1" stroke-width="0.6"/>
+                        <!-- Viewfinder -->
+                        <rect x="14" y="4.2" width="2" height="1.5" rx="0.3" stroke-width="0.5"/>
+                        <line x1="15" y1="4.2" x2="12" y2="4" stroke-width="0.4"/>
+                        <!-- Record light -->
+                        <circle cx="13.5" cy="5.8" r="0.4" fill="var(--accent)" stroke="none" opacity="0.6"/>
+                    </svg>
+                </div>
+                <!-- Actor 1 -->
+                <div class="crew-fig">
+                    <svg viewBox="0 0 18 30">
+                        <!-- Body fill -->
+                        <path class="body-fill" d="M7,9.5 L13,9.5 L12,17 L8,17 Z"/>
+                        <!-- Head -->
+                        <circle class="head-fill" cx="10" cy="4" r="2.8"/>
+                        <!-- Neck -->
+                        <line x1="10" y1="6.8" x2="10" y2="8.5" stroke-width="1.1"/>
+                        <!-- Torso outline -->
+                        <path d="M7,9.5 Q10,8.5 13,9.5 L12,17 L8,17 Z" stroke-width="0.8"/>
+                        <!-- Left leg: thigh + knee + shin -->
+                        <g class="uleg-l">
+                            <line x1="8.5" y1="17" x2="7" y2="22" stroke-width="1.4"/>
+                            <circle class="knee-dot" cx="7" cy="22" r="0.4" stroke-width="0.4"/>
+                            <g class="lleg-l">
+                                <line x1="7" y1="22" x2="6" y2="28" stroke-width="1.2"/>
+                                <line x1="6" y1="28" x2="4.5" y2="28.5" stroke-width="1"/>
+                            </g>
+                        </g>
+                        <!-- Right leg -->
+                        <g class="uleg-r">
+                            <line x1="11.5" y1="17" x2="13" y2="22" stroke-width="1.4"/>
+                            <circle class="knee-dot" cx="13" cy="22" r="0.4" stroke-width="0.4"/>
+                            <g class="lleg-r">
+                                <line x1="13" y1="22" x2="14" y2="28" stroke-width="1.2"/>
+                                <line x1="14" y1="28" x2="15.5" y2="28.5" stroke-width="1"/>
+                            </g>
+                        </g>
+                        <!-- Left arm -->
+                        <g class="uarm-l">
+                            <line x1="7" y1="9.5" x2="5" y2="13" stroke-width="1.2"/>
+                            <line x1="5" y1="13" x2="4.5" y2="17" stroke-width="1"/>
+                        </g>
+                        <!-- Right arm -->
+                        <g class="uarm-r">
+                            <line x1="13" y1="9.5" x2="15" y2="13" stroke-width="1.2"/>
+                            <line x1="15" y1="13" x2="15.5" y2="17" stroke-width="1"/>
+                        </g>
+                    </svg>
+                </div>
+                <!-- Actor 2 -->
+                <div class="crew-fig">
+                    <svg viewBox="0 0 18 30">
+                        <!-- Body fill -->
+                        <path class="body-fill" d="M7,9.5 L13,9.5 L12,17 L8,17 Z"/>
+                        <!-- Head -->
+                        <circle class="head-fill" cx="10" cy="4" r="2.8"/>
+                        <!-- Neck -->
+                        <line x1="10" y1="6.8" x2="10" y2="8.5" stroke-width="1.1"/>
+                        <!-- Torso outline -->
+                        <path d="M7,9.5 Q10,8.5 13,9.5 L12,17 L8,17 Z" stroke-width="0.8"/>
+                        <!-- Left leg: thigh + knee + shin -->
+                        <g class="uleg-l">
+                            <line x1="8.5" y1="17" x2="7" y2="22" stroke-width="1.4"/>
+                            <circle class="knee-dot" cx="7" cy="22" r="0.4" stroke-width="0.4"/>
+                            <g class="lleg-l">
+                                <line x1="7" y1="22" x2="6.5" y2="28" stroke-width="1.2"/>
+                                <line x1="6.5" y1="28" x2="5" y2="28.5" stroke-width="1"/>
+                            </g>
+                        </g>
+                        <!-- Right leg -->
+                        <g class="uleg-r">
+                            <line x1="11.5" y1="17" x2="13" y2="22" stroke-width="1.4"/>
+                            <circle class="knee-dot" cx="13" cy="22" r="0.4" stroke-width="0.4"/>
+                            <g class="lleg-r">
+                                <line x1="13" y1="22" x2="14.5" y2="28" stroke-width="1.2"/>
+                                <line x1="14.5" y1="28" x2="16" y2="28.5" stroke-width="1"/>
+                            </g>
+                        </g>
+                        <!-- Left arm (slightly gestural) -->
+                        <g class="uarm-l">
+                            <line x1="7" y1="9.5" x2="4.5" y2="13" stroke-width="1.2"/>
+                            <line x1="4.5" y1="13" x2="3.5" y2="16" stroke-width="1"/>
+                        </g>
+                        <!-- Right arm -->
+                        <g class="uarm-r">
+                            <line x1="13" y1="9.5" x2="15.5" y2="13" stroke-width="1.2"/>
+                            <line x1="15.5" y1="13" x2="16.5" y2="16.5" stroke-width="1"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#filmography">Filmography</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Open navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- Hero -->
+        <header class="container hero" id="hero">
+            <div class="hero-role reveal reveal-delay-1">Production Sound Technician</div>
+            <h1 class="reveal reveal-delay-2">Damon<br>Sheridan</h1>
+            <div class="hero-tagline reveal reveal-delay-3">Where Sound Meets Story</div>
+            <p class="hero-bio reveal reveal-delay-3">
+                Feature film, television, and documentary sound with 43+ credits across
+                studio productions, independent cinema, and international broadcast.
+                Brisbane-based. Available worldwide.
+            </p>
+            <div class="highlights reveal reveal-delay-4" id="highlightsGrid"></div>
+            <div class="hero-actions reveal reveal-delay-5">
+                <a href="mailto:contact@waterforge.com.au" class="btn-primary">Check Availability</a>
+                <a href="https://www.imdb.com/name/nm7138208/" target="_blank" rel="noopener" class="btn-secondary" aria-label="View Damon Sheridan on IMDb">IMDb Profile</a>
+            </div>
+        </header>
+
+        <!-- Selected Work -->
+        <section class="container section" id="work">
+            <span class="section-label reveal">Selected Work</span>
+
+            <div class="work-item reveal">
+                <div>
+                    <div class="work-title">Anaconda</div>
+                    <div class="work-meta">2025 &nbsp;&middot;&nbsp; Additional First Assistant Sound &nbsp;&middot;&nbsp; Feature Film</div>
+                    <p class="work-description">
+                        Major studio creature-feature reimagining for Sony Pictures / Columbia.
+                        Location sound in dense rainforest environments with complex multi-talent setups.
+                    </p>
+                    <div class="work-credits">
+                        Directed by <span>Tom Gormican</span> &nbsp;&middot;&nbsp; Starring <span>Jack Black</span> &amp; <span>Paul Rudd</span>
+                    </div>
+                </div>
+                <div class="work-badge">Feature</div>
+            </div>
+
+            <div class="work-item reveal">
+                <div>
+                    <div class="work-title">Killer Whale</div>
+                    <div class="work-meta">2026 &nbsp;&middot;&nbsp; Boom Operator &nbsp;&middot;&nbsp; Feature Film</div>
+                    <p class="work-description">
+                        Feature film production. Boom operation across varied shooting environments.
+                    </p>
+                </div>
+                <div class="work-badge">Feature</div>
+            </div>
+
+            <div class="work-item reveal">
+                <div>
+                    <div class="work-title">A Series of Unfortunate Dates</div>
+                    <div class="work-meta">2025 &nbsp;&middot;&nbsp; Sound Recordist &nbsp;&middot;&nbsp; <span class="accent">2026 AACTA Award Winner</span></div>
+                    <p class="work-description">
+                        Online comedy web series. Winner of the 2026 AACTA Award for Best Online Drama or Comedy.
+                    </p>
+                </div>
+                <div class="work-badge">AACTA Winner</div>
+            </div>
+
+            <div class="work-item reveal">
+                <div>
+                    <div class="work-title">Wolfe</div>
+                    <div class="work-meta">2017 &nbsp;&middot;&nbsp; Sound Editor &nbsp;&middot;&nbsp; <span class="accent">Berlinale Crystal Bear</span></div>
+                    <p class="work-description">
+                        Short documentary exploring mental health through animation and live action.
+                        The film won the Crystal Bear for Best Film in the Generation 14plus programme
+                        at the Berlin International Film Festival, and screened at 11 festivals
+                        including Cannes and Sydney.
+                    </p>
+                    <div class="work-credits">
+                        Directed by <span>Claire Randall</span> &nbsp;&middot;&nbsp; Griffith Film School
+                    </div>
+                </div>
+                <div class="work-badge">Crystal Bear</div>
+            </div>
+
+            <div class="work-item reveal">
+                <div>
+                    <div class="work-title">Far End of the Sea</div>
+                    <div class="work-meta">Post-Production &nbsp;&middot;&nbsp; Sound Recordist &nbsp;&middot;&nbsp; Short Film</div>
+                    <p class="work-description">
+                        The first film ever produced in the island nation of Nauru. Location recording
+                        in extreme equatorial conditions &mdash; sustained humidity and salt-air exposure on
+                        one of the world's most remote Pacific atolls.
+                    </p>
+                </div>
+                <div class="work-badge">First Film in Nauru</div>
+            </div>
+
+            <div class="work-item reveal">
+                <div>
+                    <div class="work-title">Good Cop / Bad Cop</div>
+                    <div class="work-meta">2025 &nbsp;&middot;&nbsp; Boom Operator &nbsp;&middot;&nbsp; TV Series (4 Episodes)</div>
+                    <p class="work-description">
+                        Television series. Boom operation across multi-episode production schedule.
+                    </p>
+                </div>
+                <div class="work-badge">Television</div>
+            </div>
+        </section>
+
+        <!-- Filmography -->
+        <section class="container section" id="filmography">
+            <span class="section-label reveal">Filmography</span>
+            <h2 class="section-heading reveal">Select Credits</h2>
+            <p class="reveal" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">43+ sound department credits. Curated highlights below.</p>
+
+            <table class="filmography-table reveal">
+                <thead>
+                    <tr>
+                        <th style="width: 8%;">Year</th>
+                        <th style="width: 35%;">Production</th>
+                        <th style="width: 30%;">Role</th>
+                        <th style="width: 27%;">Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>—</td>
+                        <td><span class="film-name">You, Always</span></td>
+                        <td>Boom Operator</td>
+                        <td><span class="film-type-badge">Upcoming</span></td>
+                    </tr>
+                    <tr>
+                        <td>—</td>
+                        <td><span class="film-name">Far End of the Sea</span><span class="film-award-dot" title="First film produced in Nauru"></span></td>
+                        <td>Sound Recordist</td>
+                        <td><span class="film-type-badge">Short &middot; Post-Prod</span></td>
+                    </tr>
+                    <tr>
+                        <td>—</td>
+                        <td><span class="film-name">Scattered</span></td>
+                        <td>Sound Recordist / Designer</td>
+                        <td><span class="film-type-badge">Short &middot; Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026</td>
+                        <td><span class="film-name">Killer Whale</span></td>
+                        <td>Boom Operator</td>
+                        <td><span class="film-type-badge">Feature</span></td>
+                    </tr>
+                    <tr>
+                        <td>2025</td>
+                        <td><span class="film-name">Anaconda</span></td>
+                        <td>Addl. First Asst. Sound</td>
+                        <td><span class="film-type-badge">Feature &middot; Sony</span></td>
+                    </tr>
+                    <tr>
+                        <td>2025</td>
+                        <td><span class="film-name">A Series of Unfortunate Dates</span><span class="film-award-dot" title="2026 AACTA Award Winner"></span></td>
+                        <td>Sound Recordist</td>
+                        <td><span class="film-type-badge">Web Series &middot; AACTA</span></td>
+                    </tr>
+                    <tr>
+                        <td>2025</td>
+                        <td><span class="film-name">Good Cop / Bad Cop</span></td>
+                        <td>Boom Operator</td>
+                        <td><span class="film-type-badge">TV Series</span></td>
+                    </tr>
+                    <tr>
+                        <td>2025</td>
+                        <td><span class="film-name">Beauty from Pain</span></td>
+                        <td>Boom Operator Cover</td>
+                        <td><span class="film-type-badge">Feature</span></td>
+                    </tr>
+                    <tr>
+                        <td>2024</td>
+                        <td><span class="film-name">Take My Hand</span></td>
+                        <td>Additional Boom Operator</td>
+                        <td><span class="film-type-badge">Feature</span></td>
+                    </tr>
+                    <tr>
+                        <td>2024</td>
+                        <td><span class="film-name">Afterglow</span></td>
+                        <td>Sound Designer / Recordist</td>
+                        <td><span class="film-type-badge">Short</span></td>
+                    </tr>
+                    <tr>
+                        <td>2023</td>
+                        <td><span class="film-name">It's a Cult!</span></td>
+                        <td>Sound Recordist</td>
+                        <td><span class="film-type-badge">TV Series</span></td>
+                    </tr>
+                    <tr>
+                        <td>2023</td>
+                        <td><span class="film-name">Once Upon A Midnight</span></td>
+                        <td>Sound Designer / Recordist</td>
+                        <td><span class="film-type-badge">Short</span></td>
+                    </tr>
+                    <tr>
+                        <td>2019–20</td>
+                        <td><span class="film-name">ABC News &amp; Operations</span></td>
+                        <td>Operations Specialist</td>
+                        <td><span class="film-type-badge">Broadcast</span></td>
+                    </tr>
+                    <tr>
+                        <td>2019</td>
+                        <td><span class="film-name">Nevernight</span></td>
+                        <td>Sound</td>
+                        <td><span class="film-type-badge">TV Movie</span></td>
+                    </tr>
+                    <tr>
+                        <td>2017</td>
+                        <td><span class="film-name">Wolfe</span><span class="film-award-dot" title="Crystal Bear — Berlinale"></span></td>
+                        <td>Sound Editor</td>
+                        <td><span class="film-type-badge">Short &middot; Berlinale</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="https://www.imdb.com/name/nm7138208/" target="_blank" rel="noopener" class="filmography-link reveal">
+                Full filmography on IMDb &rarr;
+            </a>
+        </section>
+
+        <!-- About -->
+        <section class="container section" id="about">
+            <span class="section-label reveal">About</span>
+            <h2 class="section-heading reveal">The Craft of Production Sound</h2>
+
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p>
+                        With over a decade in production sound and 43+ credits spanning feature films,
+                        television series, and documentary, Damon Sheridan brings adaptability and
+                        technical precision to every set.
+                    </p>
+                    <p>
+                        His work ranges from major studio productions like Anaconda for Sony Pictures
+                        to the world's most remote recording environments &mdash; including Nauru, where he
+                        served as sound recordist on the island nation's first-ever film production.
+                        Whether operating boom on a multi-camera television series or managing
+                        location sound in extreme conditions, the priority is always clean, usable audio
+                        that serves the story.
+                    </p>
+                    <p>
+                        Damon's background spans location sound recording, boom operation, sound editing,
+                        sound design, and broadcast operations with the ABC. He brings both field
+                        experience and post-production understanding to every project.
+                    </p>
+
+                    <div class="about-education">
+                        <h3>Education</h3>
+                        <div class="edu-item">
+                            <div class="edu-school">Griffith University</div>
+                            <div class="edu-detail">Bachelor's &mdash; Film &amp; Video Technology (2014&ndash;2016)</div>
+                        </div>
+                        <div class="edu-item">
+                            <div class="edu-school">Southbank Institute of Technology</div>
+                            <div class="edu-detail">Diploma &mdash; Sound Production (2013)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-photo-placeholder reveal">
+                    <i class="fas fa-camera placeholder-icon"></i>
+                    <span>Photo: On Set</span>
+                    <span style="font-size: 0.55rem; opacity: 0.5;">Replace with on-set portrait</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="container section" id="services">
+            <span class="section-label reveal">Services</span>
+            <h2 class="section-heading reveal">What Waterforge Offers</h2>
+
+            <div class="services-grid reveal">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-microphone"></i></div>
+                    <div class="service-name">Production Sound Recording</div>
+                    <p class="service-desc">
+                        On-location sound recording for feature film, television, and documentary.
+                        Boom operation, wireless management, and multi-track mixing for productions
+                        of any scale.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-sliders-h"></i></div>
+                    <div class="service-name">Sound Editing &amp; Design</div>
+                    <p class="service-desc">
+                        Post-production sound editing, design, and mixing for short film,
+                        documentary, and independent productions. From dialogue cleanup to
+                        full sound design.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-compass"></i></div>
+                    <div class="service-name">Location Audio Consulting</div>
+                    <p class="service-desc">
+                        Pre-production consultation for challenging recording environments.
+                        Equipment specification, logistics planning, and technical problem-solving
+                        for remote or complex locations.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-camera-retro"></i></div>
+                    <div class="service-name">Photography &amp; Media</div>
+                    <p class="service-desc">
+                        Production stills, behind-the-scenes documentation, and supplementary
+                        media capture for productions and commercial projects.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="container contact-section" id="contact">
+            <span class="section-label reveal">Availability</span>
+            <h2 class="contact-heading reveal">Currently Booking 2026</h2>
+            <p class="contact-sub reveal">Based in Brisbane. Available for domestic and international productions.</p>
+
+            <a href="mailto:contact@waterforge.com.au" class="contact-email reveal">contact@waterforge.com.au</a>
+
+            <div class="contact-socials reveal">
+                <a href="https://www.linkedin.com/in/damon-sheridan/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.imdb.com/name/nm7138208/" target="_blank" rel="noopener" aria-label="IMDb"><i class="fab fa-imdb"></i></a>
+                <a href="https://www.youtube.com/@waterforge5468" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/WaterForge/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+
+            <p class="contact-location reveal">Brisbane &middot; Gold Coast &middot; Queensland &middot; Worldwide</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-wordmark">Waterforge</div>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/damon-sheridan/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.imdb.com/name/nm7138208/" target="_blank" rel="noopener" aria-label="IMDb"><i class="fab fa-imdb"></i></a>
+                <a href="mailto:contact@waterforge.com.au" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="footer-copy">&copy; <span id="footerYear"></span> Waterforge / Damon Sheridan. Brisbane, Australia.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Copyright year
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+        // Rotating project highlights — randomly picks 4 each visit
+        (function() {
+            var projects = [
+                {
+                    name: 'Anaconda',
+                    role: 'Addl. First Asst. Sound',
+                    context: 'Sony Pictures / Columbia<br>Jack Black &amp; Paul Rudd'
+                },
+                {
+                    name: 'Wolfe',
+                    role: 'Sound Editor',
+                    context: '<span class="accent">Crystal Bear</span> &mdash; Berlinale<br>11 Festival Selections'
+                },
+                {
+                    name: 'A Series of Unfortunate Dates',
+                    role: 'Sound Recordist',
+                    context: '<span class="accent">2026 AACTA Award</span><br>Best Online Drama or Comedy'
+                },
+                {
+                    name: 'Far End of the Sea',
+                    role: 'Sound Recordist',
+                    context: 'First film ever produced<br>in the nation of Nauru'
+                },
+                {
+                    name: 'Killer Whale',
+                    role: 'Boom Operator',
+                    context: 'Feature Film<br>2026 Release'
+                },
+                {
+                    name: 'Good Cop / Bad Cop',
+                    role: 'Boom Operator',
+                    context: 'TV Series<br>4 Episodes'
+                },
+                {
+                    name: 'Beauty from Pain',
+                    role: 'Boom Operator Cover',
+                    context: 'Feature Film<br>2025'
+                },
+                {
+                    name: 'Take My Hand',
+                    role: 'Additional Boom Operator',
+                    context: 'Feature Film<br>2024'
+                },
+                {
+                    name: "It's a Cult!",
+                    role: 'Sound Recordist',
+                    context: 'TV Series<br>4 Episodes &middot; 2023'
+                },
+                {
+                    name: 'Nevernight',
+                    role: 'Sound',
+                    context: 'TV Movie<br>2019'
+                }
+            ];
+
+            // Shuffle using Fisher-Yates
+            for (var i = projects.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = projects[i];
+                projects[i] = projects[j];
+                projects[j] = temp;
+            }
+
+            var grid = document.getElementById('highlightsGrid');
+            var picked = projects.slice(0, 4);
+            for (var k = 0; k < picked.length; k++) {
+                var p = picked[k];
+                var card = document.createElement('div');
+                card.className = 'highlight-card';
+                card.innerHTML =
+                    '<div class="highlight-project">' + p.name + '</div>' +
+                    '<div class="highlight-role">' + p.role + '</div>' +
+                    '<div class="highlight-context">' + p.context + '</div>';
+                grid.appendChild(card);
+            }
+        })();
+
+        // Nav scroll effect + stick figure crew
+        const navbar = document.getElementById('navbar');
+        const navCrew = document.getElementById('navCrew');
+        var lastScroll = 0;
+        var walkTimeout = null;
+
+        // Calculate the available travel range for the crew
+        function getCrewBounds() {
+            var navInner = navbar.querySelector('.nav-inner');
+            var wordmark = navbar.querySelector('.wordmark');
+            var links = navbar.querySelector('.nav-links');
+            if (!navInner || !wordmark) return { start: 0, end: 0 };
+            var innerRect = navInner.getBoundingClientRect();
+            var wordmarkRect = wordmark.getBoundingClientRect();
+            var start = wordmarkRect.right - innerRect.left + 20;
+            var end;
+            if (links && window.getComputedStyle(links).display !== 'none') {
+                var linksRect = links.getBoundingClientRect();
+                end = linksRect.left - innerRect.left - 80;
+            } else {
+                end = innerRect.width - 80;
+            }
+            return { start: start, end: Math.max(start, end) };
+        }
+
+        function updateCrew() {
+            var scrollY = window.scrollY;
+            var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = maxScroll > 0 ? scrollY / maxScroll : 0;
+            progress = Math.max(0, Math.min(1, progress));
+
+            // Nav style
+            navbar.classList.toggle('scrolled', scrollY > 40);
+
+            // Crew position
+            var bounds = getCrewBounds();
+            var x = bounds.start + (bounds.end - bounds.start) * progress;
+            navCrew.style.left = x + 'px';
+
+            // Direction: face left when scrolling up
+            var delta = scrollY - lastScroll;
+            if (delta < -2) {
+                navCrew.classList.add('facing-left');
+            } else if (delta > 2) {
+                navCrew.classList.remove('facing-left');
+            }
+
+            // Walking animation: play while scrolling, pause after stopping
+            navCrew.classList.add('walking');
+            clearTimeout(walkTimeout);
+            walkTimeout = setTimeout(function() {
+                navCrew.classList.remove('walking');
+            }, 150);
+
+            lastScroll = scrollY;
+        }
+
+        var crewTicking = false;
+        window.addEventListener('scroll', function() {
+            if (!crewTicking) {
+                window.requestAnimationFrame(function() {
+                    updateCrew();
+                    crewTicking = false;
+                });
+                crewTicking = true;
+            }
+        });
+
+        // Set initial position
+        updateCrew();
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileClose = document.getElementById('mobileClose');
+
+        function openMobileNav() {
+            mobileNav.classList.add('open');
+            hamburger.classList.add('active');
+            hamburger.setAttribute('aria-label', 'Close navigation');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileNav() {
+            mobileNav.classList.remove('open');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-label', 'Open navigation');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', function() {
+            if (mobileNav.classList.contains('open')) {
+                closeMobileNav();
+            } else {
+                openMobileNav();
+            }
+        });
+
+        mobileClose.addEventListener('click', function() {
+            closeMobileNav();
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                closeMobileNav();
+            });
+        });
+
+        // Scroll-triggered reveal animations
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+            document.querySelectorAll('.reveal').forEach(function(el) {
+                observer.observe(el);
+            });
+
+            // Trigger hero animations immediately
+            document.querySelectorAll('.hero .reveal').forEach(function(el) {
+                el.classList.add('visible');
+            });
+        } else {
+            document.querySelectorAll('.reveal').forEach(function(el) {
+                el.classList.add('visible');
+            });
+        }
+    </script>
+
+</body>
+</html>
