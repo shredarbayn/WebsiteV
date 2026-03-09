@@ -79,6 +79,17 @@
             margin-bottom: 1rem;
         }
 
+        /* Audio Spectrum Background */
+        #spectrumBg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
         /* Film Grain Overlay */
         .grain {
             position: fixed;
@@ -287,6 +298,92 @@
             color: var(--accent);
         }
 
+        /* ========== SERVICES DROPDOWN ========== */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding-top: 1rem;
+            background: transparent;
+            min-width: 220px;
+            list-style: none;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s, visibility 0.2s;
+            z-index: 200;
+        }
+
+        .nav-dropdown-menu::before {
+            content: '';
+            display: block;
+            background: rgba(20, 20, 22, 0.97);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            position: absolute;
+            top: 1rem;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu,
+        .nav-dropdown:focus-within .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .nav-dropdown-menu li:first-child a {
+            padding-top: 0.75rem;
+        }
+
+        .nav-dropdown-menu li:last-child a {
+            padding-bottom: 0.75rem;
+        }
+
+        .nav-dropdown-menu li a {
+            display: block;
+            padding: 0.55rem 1.25rem;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            text-transform: none;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            transition: color 0.15s, background 0.15s;
+        }
+
+        .nav-dropdown-menu li a:hover {
+            color: var(--accent);
+            background: rgba(201, 169, 110, 0.06);
+        }
+
+        /* Small caret on the trigger */
+        .nav-dropdown > a::after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 5px;
+            vertical-align: middle;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-top: 3px solid currentColor;
+            transition: transform 0.2s;
+        }
+
+        .nav-dropdown:hover > a::after {
+            transform: rotate(180deg);
+        }
+
         .hamburger {
             display: none;
             flex-direction: column;
@@ -342,6 +439,24 @@
         }
 
         .mobile-overlay a:hover { color: var(--accent); }
+
+        .mobile-sub-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-sub-link {
+            font-family: var(--font-body) !important;
+            font-size: 1rem !important;
+            color: var(--text-secondary) !important;
+            letter-spacing: 0.04em !important;
+        }
+
+        .mobile-sub-link:hover {
+            color: var(--accent) !important;
+        }
 
         .mobile-close {
             position: absolute;
@@ -427,6 +542,15 @@
             background: var(--bg-surface);
         }
 
+        .highlight-project-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .highlight-project-link:hover .highlight-project {
+            color: var(--accent);
+        }
+
         .highlight-project {
             font-family: var(--font-display);
             font-size: 1.05rem;
@@ -434,6 +558,7 @@
             color: var(--text-primary);
             line-height: 1.2;
             margin-bottom: 0.35rem;
+            transition: color 0.2s;
         }
 
         .highlight-role {
@@ -528,6 +653,15 @@
 
         .work-item:last-child { border-bottom: none; }
 
+        .work-title-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .work-title-link:hover .work-title {
+            color: var(--accent);
+        }
+
         .work-title {
             font-family: var(--font-display);
             font-size: clamp(1.4rem, 2.5vw, 2rem);
@@ -535,6 +669,7 @@
             color: var(--text-primary);
             line-height: 1.15;
             margin-bottom: 0.5rem;
+            transition: color 0.2s;
         }
 
         .work-meta {
@@ -616,6 +751,15 @@
         .film-name {
             color: var(--text-primary);
             font-weight: 500;
+        }
+
+        .filmography-table td a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .filmography-table td a:hover .film-name {
+            color: var(--accent);
         }
 
         .film-award-dot {
@@ -740,7 +884,7 @@
         .service-card {
             background: var(--bg-deep);
             padding: 2.5rem;
-            transition: background 0.2s;
+            transition: background 0.4s, padding 0.5s ease, box-shadow 0.4s;
             position: relative;
         }
 
@@ -762,11 +906,52 @@
 
         .service-card:hover::after { opacity: 1; }
 
+        /* Expanded state when navigated to */
+        .service-card.svc-expanded {
+            background: var(--bg-elevated);
+            padding: 3.5rem 3rem;
+            z-index: 2;
+            box-shadow: 0 0 40px rgba(201, 169, 110, 0.08);
+        }
+
+        .service-card.svc-expanded::after { opacity: 1; }
+
+        .service-card.svc-expanded .service-name {
+            font-size: 1.35rem;
+        }
+
+        .service-card.svc-expanded .service-desc {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .service-card.svc-expanded .service-icon {
+            opacity: 1;
+            font-size: 1.5rem;
+        }
+
         .service-icon {
             font-size: 1.2rem;
             color: var(--accent);
             margin-bottom: 1.25rem;
             opacity: 0.7;
+            position: relative;
+            width: 2.5rem;
+            height: 2rem;
+            transition: opacity 0.4s, font-size 0.4s;
+        }
+
+        .service-icon svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            overflow: visible;
+        }
+
+        .service-icon svg * {
+            stroke: var(--accent);
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .service-name {
@@ -775,12 +960,116 @@
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 0.75rem;
+            transition: font-size 0.4s;
         }
 
         .service-desc {
             font-size: 0.88rem;
             color: var(--text-secondary);
             line-height: 1.7;
+            transition: font-size 0.4s, color 0.4s;
+        }
+
+        /* ========== SERVICE ICON ANIMATIONS ========== */
+        /* Sound waves on microphone */
+        .svc-icon-sound .svc-wave {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .svc-expanded .svc-icon-sound .svc-wave-1 {
+            animation: svcWave 1.2s ease-in-out infinite;
+        }
+        .svc-expanded .svc-icon-sound .svc-wave-2 {
+            animation: svcWave 1.2s ease-in-out 0.2s infinite;
+        }
+        .svc-expanded .svc-icon-sound .svc-wave-3 {
+            animation: svcWave 1.2s ease-in-out 0.4s infinite;
+        }
+
+        @keyframes svcWave {
+            0%, 100% { opacity: 0; transform: scale(0.9); }
+            30%, 70% { opacity: 0.7; transform: scale(1); }
+        }
+
+        /* Faders moving up and down */
+        .svc-icon-editing .svc-fader-knob-1 {
+            transition: transform 0.3s;
+        }
+        .svc-icon-editing .svc-fader-knob-2 {
+            transition: transform 0.3s;
+        }
+        .svc-icon-editing .svc-fader-knob-3 {
+            transition: transform 0.3s;
+        }
+
+        .svc-expanded .svc-icon-editing .svc-fader-knob-1 {
+            animation: faderBob1 1.5s ease-in-out infinite;
+        }
+        .svc-expanded .svc-icon-editing .svc-fader-knob-2 {
+            animation: faderBob2 1.8s ease-in-out 0.3s infinite;
+        }
+        .svc-expanded .svc-icon-editing .svc-fader-knob-3 {
+            animation: faderBob3 1.3s ease-in-out 0.6s infinite;
+        }
+
+        @keyframes faderBob1 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        @keyframes faderBob2 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        @keyframes faderBob3 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        /* Question marks and ticks for consulting */
+        .svc-icon-consulting .svc-symbol {
+            opacity: 0;
+        }
+
+        .svc-expanded .svc-icon-consulting .svc-q1 {
+            animation: svcFloat 2s ease-in-out infinite;
+        }
+        .svc-expanded .svc-icon-consulting .svc-q2 {
+            animation: svcFloat 2s ease-in-out 0.5s infinite;
+        }
+        .svc-expanded .svc-icon-consulting .svc-tick {
+            animation: svcTickPop 2s ease-in-out 1s infinite;
+        }
+
+        @keyframes svcFloat {
+            0%   { opacity: 0; transform: translateY(2px); }
+            20%  { opacity: 0.8; transform: translateY(-1px); }
+            60%  { opacity: 0.6; transform: translateY(-3px); }
+            100% { opacity: 0; transform: translateY(-5px); }
+        }
+
+        @keyframes svcTickPop {
+            0%, 20%  { opacity: 0; transform: scale(0.5); }
+            40%      { opacity: 1; transform: scale(1.15); }
+            60%      { opacity: 1; transform: scale(1); }
+            80%, 100% { opacity: 0; transform: scale(1); }
+        }
+
+        /* Camera flash */
+        .svc-icon-photo .svc-flash {
+            opacity: 0;
+        }
+
+        .svc-expanded .svc-icon-photo .svc-flash {
+            animation: cameraFlash 2.5s ease-in-out infinite;
+        }
+
+        @keyframes cameraFlash {
+            0%, 30%  { opacity: 0; }
+            35%      { opacity: 1; }
+            45%      { opacity: 0.1; }
+            50%      { opacity: 0.6; }
+            65%, 100% { opacity: 0; }
         }
 
         /* ========== CONTACT ========== */
@@ -1063,6 +1352,12 @@
         <a href="#filmography" class="mobile-nav-link">Filmography</a>
         <a href="#about" class="mobile-nav-link">About</a>
         <a href="#services" class="mobile-nav-link">Services</a>
+        <div class="mobile-sub-links">
+            <a href="#svc-sound" class="mobile-nav-link mobile-sub-link">Production Sound Recording</a>
+            <a href="#svc-editing" class="mobile-nav-link mobile-sub-link">Sound Editing &amp; Design</a>
+            <a href="#svc-consulting" class="mobile-nav-link mobile-sub-link">Location Audio Consulting</a>
+            <a href="#svc-photo" class="mobile-nav-link mobile-sub-link">Photography &amp; Media</a>
+        </div>
         <a href="#contact" class="mobile-nav-link">Contact</a>
     </div>
 
@@ -1268,7 +1563,15 @@
                 <li><a href="#work">Work</a></li>
                 <li><a href="#filmography">Filmography</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
+                <li class="nav-dropdown">
+                    <a href="#services">Services</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="#svc-sound">Production Sound Recording</a></li>
+                        <li><a href="#svc-editing">Sound Editing &amp; Design</a></li>
+                        <li><a href="#svc-consulting">Location Audio Consulting</a></li>
+                        <li><a href="#svc-photo">Photography &amp; Media</a></li>
+                    </ul>
+                </li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Open navigation">
@@ -1304,7 +1607,7 @@
 
             <div class="work-item reveal">
                 <div>
-                    <div class="work-title">Anaconda</div>
+                    <a href="https://www.imdb.com/title/tt33244668/" target="_blank" rel="noopener" class="work-title-link"><div class="work-title">Anaconda</div></a>
                     <div class="work-meta">2025 &nbsp;&middot;&nbsp; Additional First Assistant Sound &nbsp;&middot;&nbsp; Feature Film</div>
                     <p class="work-description">
                         Major studio creature-feature reimagining for Sony Pictures / Columbia.
@@ -1319,7 +1622,7 @@
 
             <div class="work-item reveal">
                 <div>
-                    <div class="work-title">Killer Whale</div>
+                    <a href="https://www.imdb.com/title/tt33479805/" target="_blank" rel="noopener" class="work-title-link"><div class="work-title">Killer Whale</div></a>
                     <div class="work-meta">2026 &nbsp;&middot;&nbsp; Boom Operator &nbsp;&middot;&nbsp; Feature Film</div>
                     <p class="work-description">
                         Feature film production. Boom operation across varied shooting environments.
@@ -1330,7 +1633,7 @@
 
             <div class="work-item reveal">
                 <div>
-                    <div class="work-title">A Series of Unfortunate Dates</div>
+                    <a href="https://www.imdb.com/title/tt32247012/" target="_blank" rel="noopener" class="work-title-link"><div class="work-title">A Series of Unfortunate Dates</div></a>
                     <div class="work-meta">2025 &nbsp;&middot;&nbsp; Sound Recordist &nbsp;&middot;&nbsp; <span class="accent">2026 AACTA Award Winner</span></div>
                     <p class="work-description">
                         Online comedy web series. Winner of the 2026 AACTA Award for Best Online Drama or Comedy.
@@ -1341,7 +1644,7 @@
 
             <div class="work-item reveal">
                 <div>
-                    <div class="work-title">Wolfe</div>
+                    <a href="https://www.imdb.com/title/tt6946962/" target="_blank" rel="noopener" class="work-title-link"><div class="work-title">Wolfe</div></a>
                     <div class="work-meta">2017 &nbsp;&middot;&nbsp; Sound Editor &nbsp;&middot;&nbsp; <span class="accent">Berlinale Crystal Bear</span></div>
                     <p class="work-description">
                         Short documentary exploring mental health through animation and live action.
@@ -1358,7 +1661,7 @@
 
             <div class="work-item reveal">
                 <div>
-                    <div class="work-title">Far End of the Sea</div>
+                    <a href="https://www.imdb.com/title/tt39742493/" target="_blank" rel="noopener" class="work-title-link"><div class="work-title">Far End of the Sea</div></a>
                     <div class="work-meta">Post-Production &nbsp;&middot;&nbsp; Sound Recordist &nbsp;&middot;&nbsp; Short Film</div>
                     <p class="work-description">
                         The first film ever produced in the island nation of Nauru. Location recording
@@ -1371,7 +1674,7 @@
 
             <div class="work-item reveal">
                 <div>
-                    <div class="work-title">Good Cop / Bad Cop</div>
+                    <a href="https://www.imdb.com/title/tt31691565/" target="_blank" rel="noopener" class="work-title-link"><div class="work-title">Good Cop / Bad Cop</div></a>
                     <div class="work-meta">2025 &nbsp;&middot;&nbsp; Boom Operator &nbsp;&middot;&nbsp; TV Series (4 Episodes)</div>
                     <p class="work-description">
                         Television series. Boom operation across multi-episode production schedule.
@@ -1399,73 +1702,73 @@
                 <tbody>
                     <tr>
                         <td>—</td>
-                        <td><span class="film-name">You, Always</span></td>
+                        <td><a href="https://www.imdb.com/title/tt34984613/" target="_blank" rel="noopener"><span class="film-name">You, Always</span></a></td>
                         <td>Boom Operator</td>
                         <td><span class="film-type-badge">Upcoming</span></td>
                     </tr>
                     <tr>
                         <td>—</td>
-                        <td><span class="film-name">Far End of the Sea</span><span class="film-award-dot" title="First film produced in Nauru"></span></td>
+                        <td><a href="https://www.imdb.com/title/tt39742493/" target="_blank" rel="noopener"><span class="film-name">Far End of the Sea</span><span class="film-award-dot" title="First film produced in Nauru"></span></a></td>
                         <td>Sound Recordist</td>
                         <td><span class="film-type-badge">Short &middot; Post-Prod</span></td>
                     </tr>
                     <tr>
                         <td>—</td>
-                        <td><span class="film-name">Scattered</span></td>
+                        <td><a href="https://www.imdb.com/title/tt31049910/" target="_blank" rel="noopener"><span class="film-name">Scattered</span></a></td>
                         <td>Sound Recordist / Designer</td>
                         <td><span class="film-type-badge">Short &middot; Completed</span></td>
                     </tr>
                     <tr>
                         <td>2026</td>
-                        <td><span class="film-name">Killer Whale</span></td>
+                        <td><a href="https://www.imdb.com/title/tt33479805/" target="_blank" rel="noopener"><span class="film-name">Killer Whale</span></a></td>
                         <td>Boom Operator</td>
                         <td><span class="film-type-badge">Feature</span></td>
                     </tr>
                     <tr>
                         <td>2025</td>
-                        <td><span class="film-name">Anaconda</span></td>
+                        <td><a href="https://www.imdb.com/title/tt33244668/" target="_blank" rel="noopener"><span class="film-name">Anaconda</span></a></td>
                         <td>Addl. First Asst. Sound</td>
                         <td><span class="film-type-badge">Feature &middot; Sony</span></td>
                     </tr>
                     <tr>
                         <td>2025</td>
-                        <td><span class="film-name">A Series of Unfortunate Dates</span><span class="film-award-dot" title="2026 AACTA Award Winner"></span></td>
+                        <td><a href="https://www.imdb.com/title/tt32247012/" target="_blank" rel="noopener"><span class="film-name">A Series of Unfortunate Dates</span><span class="film-award-dot" title="2026 AACTA Award Winner"></span></a></td>
                         <td>Sound Recordist</td>
                         <td><span class="film-type-badge">Web Series &middot; AACTA</span></td>
                     </tr>
                     <tr>
                         <td>2025</td>
-                        <td><span class="film-name">Good Cop / Bad Cop</span></td>
+                        <td><a href="https://www.imdb.com/title/tt31691565/" target="_blank" rel="noopener"><span class="film-name">Good Cop / Bad Cop</span></a></td>
                         <td>Boom Operator</td>
                         <td><span class="film-type-badge">TV Series</span></td>
                     </tr>
                     <tr>
                         <td>2025</td>
-                        <td><span class="film-name">Beauty from Pain</span></td>
+                        <td><a href="https://www.imdb.com/title/tt36585628/" target="_blank" rel="noopener"><span class="film-name">Beauty from Pain</span></a></td>
                         <td>Boom Operator Cover</td>
                         <td><span class="film-type-badge">Feature</span></td>
                     </tr>
                     <tr>
                         <td>2024</td>
-                        <td><span class="film-name">Take My Hand</span></td>
+                        <td><a href="https://www.imdb.com/title/tt16025158/" target="_blank" rel="noopener"><span class="film-name">Take My Hand</span></a></td>
                         <td>Additional Boom Operator</td>
                         <td><span class="film-type-badge">Feature</span></td>
                     </tr>
                     <tr>
                         <td>2024</td>
-                        <td><span class="film-name">Afterglow</span></td>
+                        <td><a href="https://www.imdb.com/title/tt32143201/" target="_blank" rel="noopener"><span class="film-name">Afterglow</span></a></td>
                         <td>Sound Designer / Recordist</td>
                         <td><span class="film-type-badge">Short</span></td>
                     </tr>
                     <tr>
                         <td>2023</td>
-                        <td><span class="film-name">It's a Cult!</span></td>
+                        <td><a href="https://www.imdb.com/title/tt14616912/" target="_blank" rel="noopener"><span class="film-name">It's a Cult!</span></a></td>
                         <td>Sound Recordist</td>
                         <td><span class="film-type-badge">TV Series</span></td>
                     </tr>
                     <tr>
                         <td>2023</td>
-                        <td><span class="film-name">Once Upon A Midnight</span></td>
+                        <td><a href="https://www.imdb.com/title/tt17280246/" target="_blank" rel="noopener"><span class="film-name">Once Upon A Midnight</span></a></td>
                         <td>Sound Designer / Recordist</td>
                         <td><span class="film-type-badge">Short</span></td>
                     </tr>
@@ -1477,13 +1780,13 @@
                     </tr>
                     <tr>
                         <td>2019</td>
-                        <td><span class="film-name">Nevernight</span></td>
+                        <td><a href="https://www.imdb.com/title/tt10204560/" target="_blank" rel="noopener"><span class="film-name">Nevernight</span></a></td>
                         <td>Sound</td>
                         <td><span class="film-type-badge">TV Movie</span></td>
                     </tr>
                     <tr>
                         <td>2017</td>
-                        <td><span class="film-name">Wolfe</span><span class="film-award-dot" title="Crystal Bear — Berlinale"></span></td>
+                        <td><a href="https://www.imdb.com/title/tt6946962/" target="_blank" rel="noopener"><span class="film-name">Wolfe</span><span class="film-award-dot" title="Crystal Bear — Berlinale"></span></a></td>
                         <td>Sound Editor</td>
                         <td><span class="film-type-badge">Short &middot; Berlinale</span></td>
                     </tr>
@@ -1548,8 +1851,22 @@
             <h2 class="section-heading reveal">What Waterforge Offers</h2>
 
             <div class="services-grid reveal">
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-microphone"></i></div>
+                <div class="service-card" id="svc-sound">
+                    <div class="service-icon svc-icon-sound">
+                        <svg viewBox="0 0 24 24" stroke-width="1.6">
+                            <!-- Microphone body -->
+                            <rect x="9" y="2" width="6" height="12" rx="3"/>
+                            <!-- Stand -->
+                            <path d="M12 18v3"/>
+                            <path d="M8 21h8"/>
+                            <!-- Base arc -->
+                            <path d="M5 11a7 7 0 0 0 14 0" stroke-width="1.4"/>
+                            <!-- Sound waves -->
+                            <path class="svc-wave svc-wave-1" d="M20 8a4 4 0 0 1 0 8" stroke-width="1.2"/>
+                            <path class="svc-wave svc-wave-2" d="M23 5.5a8 8 0 0 1 0 13" stroke-width="1"/>
+                            <path class="svc-wave svc-wave-3" d="M26 3a12 12 0 0 1 0 18" stroke-width="0.8"/>
+                        </svg>
+                    </div>
                     <div class="service-name">Production Sound Recording</div>
                     <p class="service-desc">
                         On-location sound recording for feature film, television, and documentary.
@@ -1557,8 +1874,25 @@
                         of any scale.
                     </p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-sliders-h"></i></div>
+                <div class="service-card" id="svc-editing">
+                    <div class="service-icon svc-icon-editing">
+                        <svg viewBox="0 0 24 24" stroke-width="1.6">
+                            <!-- Fader tracks -->
+                            <line x1="4" y1="3" x2="4" y2="21"/>
+                            <line x1="12" y1="3" x2="12" y2="21"/>
+                            <line x1="20" y1="3" x2="20" y2="21"/>
+                            <!-- Fader knobs (animated) -->
+                            <g class="svc-fader-knob-1">
+                                <rect x="1.5" y="9" width="5" height="3" rx="0.8" fill="var(--accent)" stroke="var(--accent)"/>
+                            </g>
+                            <g class="svc-fader-knob-2">
+                                <rect x="9.5" y="13" width="5" height="3" rx="0.8" fill="var(--accent)" stroke="var(--accent)"/>
+                            </g>
+                            <g class="svc-fader-knob-3">
+                                <rect x="17.5" y="7" width="5" height="3" rx="0.8" fill="var(--accent)" stroke="var(--accent)"/>
+                            </g>
+                        </svg>
+                    </div>
                     <div class="service-name">Sound Editing &amp; Design</div>
                     <p class="service-desc">
                         Post-production sound editing, design, and mixing for short film,
@@ -1566,8 +1900,18 @@
                         full sound design.
                     </p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-compass"></i></div>
+                <div class="service-card" id="svc-consulting">
+                    <div class="service-icon svc-icon-consulting">
+                        <svg viewBox="0 0 24 24" stroke-width="1.6">
+                            <!-- Magnifying glass / search -->
+                            <circle cx="10" cy="10" r="7"/>
+                            <line x1="15" y1="15" x2="21" y2="21" stroke-width="2"/>
+                            <!-- Floating symbols -->
+                            <text class="svc-symbol svc-q1" x="1" y="6" fill="var(--accent)" stroke="none" font-size="5" font-family="var(--font-mono)">?</text>
+                            <text class="svc-symbol svc-q2" x="18" y="4" fill="var(--accent)" stroke="none" font-size="4.5" font-family="var(--font-mono)">?</text>
+                            <text class="svc-symbol svc-tick" x="20" y="10" fill="var(--accent)" stroke="none" font-size="6" font-family="var(--font-mono)">&#x2713;</text>
+                        </svg>
+                    </div>
                     <div class="service-name">Location Audio Consulting</div>
                     <p class="service-desc">
                         Pre-production consultation for challenging recording environments.
@@ -1575,8 +1919,21 @@
                         for remote or complex locations.
                     </p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-camera-retro"></i></div>
+                <div class="service-card" id="svc-photo">
+                    <div class="service-icon svc-icon-photo">
+                        <svg viewBox="0 0 24 24" stroke-width="1.6">
+                            <!-- Camera body -->
+                            <rect x="2" y="7" width="20" height="13" rx="2"/>
+                            <!-- Lens -->
+                            <circle cx="12" cy="14" r="4"/>
+                            <circle cx="12" cy="14" r="1.5" stroke-width="1"/>
+                            <!-- Viewfinder bump -->
+                            <path d="M8 7V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/>
+                            <!-- Flash burst -->
+                            <circle class="svc-flash" cx="12" cy="13" r="10" fill="rgba(201,169,110,0.15)" stroke="none"/>
+                            <circle class="svc-flash" cx="12" cy="13" r="5" fill="rgba(201,169,110,0.25)" stroke="none"/>
+                        </svg>
+                    </div>
                     <div class="service-name">Photography &amp; Media</div>
                     <p class="service-desc">
                         Production stills, behind-the-scenes documentation, and supplementary
@@ -1623,58 +1980,123 @@
         // Copyright year
         document.getElementById('footerYear').textContent = new Date().getFullYear();
 
+        // Service card expand on dropdown navigation
+        (function() {
+            var svcIds = ['svc-sound', 'svc-editing', 'svc-consulting', 'svc-photo'];
+            var expandTimer = null;
+
+            function expandCard(id) {
+                // Remove expanded from all
+                svcIds.forEach(function(sid) {
+                    var el = document.getElementById(sid);
+                    if (el) el.classList.remove('svc-expanded');
+                });
+                var target = document.getElementById(id);
+                if (target) {
+                    target.classList.add('svc-expanded');
+                    clearTimeout(expandTimer);
+                    expandTimer = setTimeout(function() {
+                        target.classList.remove('svc-expanded');
+                    }, 6000);
+                }
+            }
+
+            // Listen to clicks on dropdown and mobile sub-links
+            document.querySelectorAll('a[href^="#svc-"]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var id = this.getAttribute('href').substring(1);
+                    var target = document.getElementById(id);
+                    if (target) {
+                        var rect = target.getBoundingClientRect();
+                        var navH = document.getElementById('navbar').offsetHeight;
+                        var viewH = window.innerHeight - navH;
+                        var scrollTo = window.scrollY + rect.top - navH - Math.max(0, (viewH - rect.height) / 2);
+                        window.scrollTo({ top: Math.max(0, scrollTo), behavior: 'smooth' });
+                        setTimeout(function() { expandCard(id); }, 400);
+                    }
+                });
+            });
+
+            // Also trigger on hash change (e.g. direct URL)
+            window.addEventListener('hashchange', function() {
+                var hash = window.location.hash.substring(1);
+                if (svcIds.indexOf(hash) !== -1) {
+                    setTimeout(function() { expandCard(hash); }, 300);
+                }
+            });
+
+            // Check on load if hash matches
+            if (window.location.hash) {
+                var hash = window.location.hash.substring(1);
+                if (svcIds.indexOf(hash) !== -1) {
+                    setTimeout(function() { expandCard(hash); }, 500);
+                }
+            }
+        })();
+
         // Rotating project highlights — randomly picks 4 each visit
         (function() {
             var projects = [
                 {
                     name: 'Anaconda',
                     role: 'Addl. First Asst. Sound',
-                    context: 'Sony Pictures / Columbia<br>Jack Black &amp; Paul Rudd'
+                    context: 'Sony Pictures / Columbia<br>Jack Black &amp; Paul Rudd',
+                    imdb: 'https://www.imdb.com/title/tt33244668/'
                 },
                 {
                     name: 'Wolfe',
                     role: 'Sound Editor',
-                    context: '<span class="accent">Crystal Bear</span> &mdash; Berlinale<br>11 Festival Selections'
+                    context: '<span class="accent">Crystal Bear</span> &mdash; Berlinale<br>11 Festival Selections',
+                    imdb: 'https://www.imdb.com/title/tt6946962/'
                 },
                 {
                     name: 'A Series of Unfortunate Dates',
                     role: 'Sound Recordist',
-                    context: '<span class="accent">2026 AACTA Award</span><br>Best Online Drama or Comedy'
+                    context: '<span class="accent">2026 AACTA Award</span><br>Best Online Drama or Comedy',
+                    imdb: 'https://www.imdb.com/title/tt32247012/'
                 },
                 {
                     name: 'Far End of the Sea',
                     role: 'Sound Recordist',
-                    context: 'First film ever produced<br>in the nation of Nauru'
+                    context: 'First film ever produced<br>in the nation of Nauru',
+                    imdb: 'https://www.imdb.com/title/tt39742493/'
                 },
                 {
                     name: 'Killer Whale',
                     role: 'Boom Operator',
-                    context: 'Feature Film<br>2026 Release'
+                    context: 'Feature Film<br>2026 Release',
+                    imdb: 'https://www.imdb.com/title/tt33479805/'
                 },
                 {
                     name: 'Good Cop / Bad Cop',
                     role: 'Boom Operator',
-                    context: 'TV Series<br>4 Episodes'
+                    context: 'TV Series<br>4 Episodes',
+                    imdb: 'https://www.imdb.com/title/tt31691565/'
                 },
                 {
                     name: 'Beauty from Pain',
                     role: 'Boom Operator Cover',
-                    context: 'Feature Film<br>2025'
+                    context: 'Feature Film<br>2025',
+                    imdb: 'https://www.imdb.com/title/tt36585628/'
                 },
                 {
                     name: 'Take My Hand',
                     role: 'Additional Boom Operator',
-                    context: 'Feature Film<br>2024'
+                    context: 'Feature Film<br>2024',
+                    imdb: 'https://www.imdb.com/title/tt16025158/'
                 },
                 {
                     name: "It's a Cult!",
                     role: 'Sound Recordist',
-                    context: 'TV Series<br>4 Episodes &middot; 2023'
+                    context: 'TV Series<br>4 Episodes &middot; 2023',
+                    imdb: 'https://www.imdb.com/title/tt14616912/'
                 },
                 {
                     name: 'Nevernight',
                     role: 'Sound',
-                    context: 'TV Movie<br>2019'
+                    context: 'TV Movie<br>2019',
+                    imdb: 'https://www.imdb.com/title/tt10204560/'
                 }
             ];
 
@@ -1693,7 +2115,9 @@
                 var card = document.createElement('div');
                 card.className = 'highlight-card';
                 card.innerHTML =
+                    '<a href="' + p.imdb + '" target="_blank" rel="noopener" class="highlight-project-link">' +
                     '<div class="highlight-project">' + p.name + '</div>' +
+                    '</a>' +
                     '<div class="highlight-role">' + p.role + '</div>' +
                     '<div class="highlight-context">' + p.context + '</div>';
                 grid.appendChild(card);
