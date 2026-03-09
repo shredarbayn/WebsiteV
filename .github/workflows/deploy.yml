@@ -20,16 +20,3 @@ jobs:
           echo "$PRIVATE_KEY" | base64 -d > private_key
           chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 'cd /var/www/html && sudo git pull origin main'
-```
-
-Make sure there's **nothing after that last line** — no extra text, no backticks, no "Save it and push" text. Delete everything else.
-
-Save, then in VS Code terminal:
-```
-git add .
-```
-```
-git commit -m "Fix yaml file"
-```
-```
-git push origin main
