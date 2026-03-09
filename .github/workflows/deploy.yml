@@ -17,8 +17,15 @@ jobs:
           HOSTNAME: ${{ secrets.HOST_DNS }}
           USER_NAME: ${{ secrets.USERNAME }}
         run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          echo "$PRIVATE_KEY" | base64 -d > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             cd /var/www/html &&
             sudo git pull origin main
           '
+```
+
+Save it and push:
+```
+git add .
+git commit -m "Fix deploy key encoding"
+git push origin main
