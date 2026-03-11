@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YRNMX4LY9K"></script>
-        <script>
+    <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'G-YRNMX4LY9K');
@@ -13,11 +14,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Damon Sheridan | Production Sound | Waterforge — Brisbane, Australia</title>
-    <meta name="description" content="Damon Sheridan is a production sound technician with 43+ credits across feature film, television, and documentary. Based in Brisbane, available worldwide. Waterforge.">
+    <meta name="description"
+        content="Damon Sheridan is a production sound technician with 43+ credits across feature film, television, and documentary. Based in Brisbane, available worldwide. Waterforge.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
@@ -36,9 +40,17 @@
             --font-mono: 'JetBrains Mono', 'Courier New', monospace;
         }
 
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
             background-color: var(--bg-deep);
@@ -159,7 +171,9 @@
             transition: opacity 0.3s;
         }
 
-        nav.scrolled .crew-fig { opacity: 0.48; }
+        nav.scrolled .crew-fig {
+            opacity: 0.48;
+        }
 
         .crew-fig svg {
             width: 100%;
@@ -175,24 +189,61 @@
         }
 
         /* Filled elements */
-        .crew-fig .body-fill { fill: var(--accent); stroke: none; opacity: 0.12; }
-        .crew-fig .head-fill { fill: var(--accent); stroke: var(--accent); stroke-width: 1; }
+        .crew-fig .body-fill {
+            fill: var(--accent);
+            stroke: none;
+            opacity: 0.12;
+        }
+
+        .crew-fig .head-fill {
+            fill: var(--accent);
+            stroke: var(--accent);
+            stroke-width: 1;
+        }
 
         /* Flip all figures when scrolling up */
-        .nav-crew.facing-left { transform: translateY(-50%) scaleX(-1); }
+        .nav-crew.facing-left {
+            transform: translateY(-50%) scaleX(-1);
+        }
 
         /* --- Walk cycle with knees --- */
         /* Thighs pivot at hip */
-        .crew-fig .uleg-l { transform-origin: 8.5px 17px; animation: hipA 0.6s cubic-bezier(0.45,0.05,0.55,0.95) infinite paused; }
-        .crew-fig .uleg-r { transform-origin: 11.5px 17px; animation: hipB 0.6s cubic-bezier(0.45,0.05,0.55,0.95) infinite paused; }
+        .crew-fig .uleg-l {
+            transform-origin: 8.5px 17px;
+            animation: hipA 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite paused;
+        }
+
+        .crew-fig .uleg-r {
+            transform-origin: 11.5px 17px;
+            animation: hipB 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite paused;
+        }
+
         /* Shins pivot at knee — nested inside thigh group */
-        .crew-fig .lleg-l { transform-origin: 7px 22px; animation: kneeA 0.6s cubic-bezier(0.45,0.05,0.55,0.95) infinite paused; }
-        .crew-fig .lleg-r { transform-origin: 13px 22px; animation: kneeB 0.6s cubic-bezier(0.45,0.05,0.55,0.95) infinite paused; }
+        .crew-fig .lleg-l {
+            transform-origin: 7px 22px;
+            animation: kneeA 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite paused;
+        }
+
+        .crew-fig .lleg-r {
+            transform-origin: 13px 22px;
+            animation: kneeB 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite paused;
+        }
+
         /* Knee dot — subtle joint marker */
-        .crew-fig .knee-dot { opacity: 0.35; }
+        .crew-fig .knee-dot {
+            opacity: 0.35;
+        }
+
         /* Arms pivot at shoulder */
-        .crew-fig .uarm-l { transform-origin: 7px 9.5px; animation: shoulderA 0.6s cubic-bezier(0.45,0.05,0.55,0.95) infinite paused; }
-        .crew-fig .uarm-r { transform-origin: 13px 9.5px; animation: shoulderB 0.6s cubic-bezier(0.45,0.05,0.55,0.95) infinite paused; }
+        .crew-fig .uarm-l {
+            transform-origin: 7px 9.5px;
+            animation: shoulderA 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite paused;
+        }
+
+        .crew-fig .uarm-r {
+            transform-origin: 13px 9.5px;
+            animation: shoulderB 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite paused;
+        }
 
         .nav-crew.walking .crew-fig .uleg-l,
         .nav-crew.walking .crew-fig .uleg-r,
@@ -205,48 +256,117 @@
 
         /* Boom op: arms hold pole, no swing */
         .crew-fig.fig-boom .uarm-l,
-        .crew-fig.fig-boom .uarm-r { animation: none; }
+        .crew-fig.fig-boom .uarm-r {
+            animation: none;
+        }
 
         /* Camera op: arms hold camera, no swing */
         .crew-fig.fig-cam .uarm-l,
-        .crew-fig.fig-cam .uarm-r { animation: none; }
+        .crew-fig.fig-cam .uarm-r {
+            animation: none;
+        }
 
         /* Hip swing — gentle stride */
         @keyframes hipA {
-            0%   { transform: rotate(-8deg); }
-            50%  { transform: rotate(8deg); }
-            100% { transform: rotate(-8deg); }
+            0% {
+                transform: rotate(-8deg);
+            }
+
+            50% {
+                transform: rotate(8deg);
+            }
+
+            100% {
+                transform: rotate(-8deg);
+            }
         }
+
         @keyframes hipB {
-            0%   { transform: rotate(8deg); }
-            50%  { transform: rotate(-8deg); }
-            100% { transform: rotate(8deg); }
+            0% {
+                transform: rotate(8deg);
+            }
+
+            50% {
+                transform: rotate(-8deg);
+            }
+
+            100% {
+                transform: rotate(8deg);
+            }
         }
+
         /* Knee bend — subtle lift on the trailing leg */
         @keyframes kneeA {
-            0%   { transform: rotate(10deg); }
-            25%  { transform: rotate(2deg); }
-            50%  { transform: rotate(0deg); }
-            75%  { transform: rotate(4deg); }
-            100% { transform: rotate(10deg); }
+            0% {
+                transform: rotate(10deg);
+            }
+
+            25% {
+                transform: rotate(2deg);
+            }
+
+            50% {
+                transform: rotate(0deg);
+            }
+
+            75% {
+                transform: rotate(4deg);
+            }
+
+            100% {
+                transform: rotate(10deg);
+            }
         }
+
         @keyframes kneeB {
-            0%   { transform: rotate(0deg); }
-            25%  { transform: rotate(4deg); }
-            50%  { transform: rotate(10deg); }
-            75%  { transform: rotate(2deg); }
-            100% { transform: rotate(0deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(4deg);
+            }
+
+            50% {
+                transform: rotate(10deg);
+            }
+
+            75% {
+                transform: rotate(2deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
         }
+
         /* Arm swing — gentle counter-balance */
         @keyframes shoulderA {
-            0%   { transform: rotate(6deg); }
-            50%  { transform: rotate(-6deg); }
-            100% { transform: rotate(6deg); }
+            0% {
+                transform: rotate(6deg);
+            }
+
+            50% {
+                transform: rotate(-6deg);
+            }
+
+            100% {
+                transform: rotate(6deg);
+            }
         }
+
         @keyframes shoulderB {
-            0%   { transform: rotate(-6deg); }
-            50%  { transform: rotate(6deg); }
-            100% { transform: rotate(-6deg); }
+            0% {
+                transform: rotate(-6deg);
+            }
+
+            50% {
+                transform: rotate(6deg);
+            }
+
+            100% {
+                transform: rotate(-6deg);
+            }
         }
 
         /* Boom pole sway — pivots at grip point */
@@ -254,25 +374,40 @@
             transform-origin: 14px 1px;
             animation: boomSway 1.4s ease-in-out infinite alternate paused;
         }
+
         .nav-crew.walking .fig-boom .boom-pole {
             animation-play-state: running;
         }
+
         @keyframes boomSway {
-            0%   { transform: rotate(-1.5deg); }
-            100% { transform: rotate(1.5deg); }
+            0% {
+                transform: rotate(-1.5deg);
+            }
+
+            100% {
+                transform: rotate(1.5deg);
+            }
         }
 
         /* Body bob while walking */
         .nav-crew.walking .crew-fig svg {
-            animation: bodyBob 0.3s cubic-bezier(0.45,0.05,0.55,0.95) infinite alternate;
+            animation: bodyBob 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
         }
+
         @keyframes bodyBob {
-            0%   { transform: translateY(0.2px); }
-            100% { transform: translateY(-0.2px); }
+            0% {
+                transform: translateY(0.2px);
+            }
+
+            100% {
+                transform: translateY(-0.2px);
+            }
         }
 
         @media (max-width: 768px) {
-            .nav-crew { display: none; }
+            .nav-crew {
+                display: none;
+            }
         }
 
         .wordmark {
@@ -376,7 +511,7 @@
         }
 
         /* Small caret on the trigger */
-        .nav-dropdown > a::after {
+        .nav-dropdown>a::after {
             content: '';
             display: inline-block;
             width: 0;
@@ -389,7 +524,7 @@
             transition: transform 0.2s;
         }
 
-        .nav-dropdown:hover > a::after {
+        .nav-dropdown:hover>a::after {
             transform: rotate(180deg);
         }
 
@@ -415,10 +550,12 @@
         .hamburger.active span:nth-child(1) {
             transform: translateY(6.5px) rotate(45deg);
         }
+
         .hamburger.active span:nth-child(2) {
             opacity: 0;
             transform: scaleX(0);
         }
+
         .hamburger.active span:nth-child(3) {
             transform: translateY(-6.5px) rotate(-45deg);
         }
@@ -435,7 +572,9 @@
             gap: 2.5rem;
         }
 
-        .mobile-overlay.open { display: flex; }
+        .mobile-overlay.open {
+            display: flex;
+        }
 
         .mobile-overlay a {
             font-family: var(--font-display);
@@ -447,7 +586,9 @@
             transition: color 0.2s;
         }
 
-        .mobile-overlay a:hover { color: var(--accent); }
+        .mobile-overlay a:hover {
+            color: var(--accent);
+        }
 
         .mobile-sub-links {
             display: flex;
@@ -639,8 +780,8 @@
             padding: 3rem 0;
             border-bottom: 1px solid var(--border);
             display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 2rem;
+            grid-template-columns: 120px 1fr auto;
+            gap: 2.5rem;
             align-items: start;
             transition: border-color 0.3s;
             position: relative;
@@ -658,9 +799,30 @@
             transition: opacity 0.3s;
         }
 
-        .work-item:hover::before { opacity: 1; }
+        .work-item:hover::before {
+            opacity: 1;
+        }
 
-        .work-item:last-child { border-bottom: none; }
+        .work-item:last-child {
+            border-bottom: none;
+        }
+
+        .work-poster {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 2 / 3;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .work-item:hover .work-poster {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+            border-color: var(--accent-border);
+        }
 
         .work-title-link {
             color: inherit;
@@ -690,7 +852,9 @@
             margin-bottom: 1rem;
         }
 
-        .work-meta .accent { color: var(--accent); }
+        .work-meta .accent {
+            color: var(--accent);
+        }
 
         .work-description {
             font-size: 0.95rem;
@@ -801,7 +965,9 @@
             transition: opacity 0.2s;
         }
 
-        .filmography-link:hover { opacity: 0.7; }
+        .filmography-link:hover {
+            opacity: 0.7;
+        }
 
         /* ========== ABOUT ========== */
         .about-grid {
@@ -913,7 +1079,9 @@
             background: var(--bg-surface);
         }
 
-        .service-card:hover::after { opacity: 1; }
+        .service-card:hover::after {
+            opacity: 1;
+        }
 
         /* Expanded state when navigated to */
         .service-card.svc-expanded {
@@ -923,7 +1091,9 @@
             box-shadow: 0 0 40px rgba(201, 169, 110, 0.08);
         }
 
-        .service-card.svc-expanded::after { opacity: 1; }
+        .service-card.svc-expanded::after {
+            opacity: 1;
+        }
 
         .service-card.svc-expanded .service-name {
             font-size: 1.35rem;
@@ -989,25 +1159,39 @@
         .svc-expanded .svc-icon-sound .svc-wave-1 {
             animation: svcWave 1.2s ease-in-out infinite;
         }
+
         .svc-expanded .svc-icon-sound .svc-wave-2 {
             animation: svcWave 1.2s ease-in-out 0.2s infinite;
         }
+
         .svc-expanded .svc-icon-sound .svc-wave-3 {
             animation: svcWave 1.2s ease-in-out 0.4s infinite;
         }
 
         @keyframes svcWave {
-            0%, 100% { opacity: 0; transform: scale(0.9); }
-            30%, 70% { opacity: 0.7; transform: scale(1); }
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            30%,
+            70% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
         }
 
         /* Faders moving up and down */
         .svc-icon-editing .svc-fader-knob-1 {
             transition: transform 0.3s;
         }
+
         .svc-icon-editing .svc-fader-knob-2 {
             transition: transform 0.3s;
         }
+
         .svc-icon-editing .svc-fader-knob-3 {
             transition: transform 0.3s;
         }
@@ -1015,24 +1199,49 @@
         .svc-expanded .svc-icon-editing .svc-fader-knob-1 {
             animation: faderBob1 1.5s ease-in-out infinite;
         }
+
         .svc-expanded .svc-icon-editing .svc-fader-knob-2 {
             animation: faderBob2 1.8s ease-in-out 0.3s infinite;
         }
+
         .svc-expanded .svc-icon-editing .svc-fader-knob-3 {
             animation: faderBob3 1.3s ease-in-out 0.6s infinite;
         }
 
         @keyframes faderBob1 {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
         }
+
         @keyframes faderBob2 {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
         }
+
         @keyframes faderBob3 {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-3px);
+            }
         }
 
         /* Question marks and ticks for consulting */
@@ -1043,25 +1252,60 @@
         .svc-expanded .svc-icon-consulting .svc-q1 {
             animation: svcFloat 2s ease-in-out infinite;
         }
+
         .svc-expanded .svc-icon-consulting .svc-q2 {
             animation: svcFloat 2s ease-in-out 0.5s infinite;
         }
+
         .svc-expanded .svc-icon-consulting .svc-tick {
             animation: svcTickPop 2s ease-in-out 1s infinite;
         }
 
         @keyframes svcFloat {
-            0%   { opacity: 0; transform: translateY(2px); }
-            20%  { opacity: 0.8; transform: translateY(-1px); }
-            60%  { opacity: 0.6; transform: translateY(-3px); }
-            100% { opacity: 0; transform: translateY(-5px); }
+            0% {
+                opacity: 0;
+                transform: translateY(2px);
+            }
+
+            20% {
+                opacity: 0.8;
+                transform: translateY(-1px);
+            }
+
+            60% {
+                opacity: 0.6;
+                transform: translateY(-3px);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
         }
 
         @keyframes svcTickPop {
-            0%, 20%  { opacity: 0; transform: scale(0.5); }
-            40%      { opacity: 1; transform: scale(1.15); }
-            60%      { opacity: 1; transform: scale(1); }
-            80%, 100% { opacity: 0; transform: scale(1); }
+
+            0%,
+            20% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            40% {
+                opacity: 1;
+                transform: scale(1.15);
+            }
+
+            60% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            80%,
+            100% {
+                opacity: 0;
+                transform: scale(1);
+            }
         }
 
         /* Camera flash */
@@ -1074,11 +1318,28 @@
         }
 
         @keyframes cameraFlash {
-            0%, 30%  { opacity: 0; }
-            35%      { opacity: 1; }
-            45%      { opacity: 0.1; }
-            50%      { opacity: 0.6; }
-            65%, 100% { opacity: 0; }
+
+            0%,
+            30% {
+                opacity: 0;
+            }
+
+            35% {
+                opacity: 1;
+            }
+
+            45% {
+                opacity: 0.1;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+
+            65%,
+            100% {
+                opacity: 0;
+            }
         }
 
         /* ========== CONTACT ========== */
@@ -1139,7 +1400,9 @@
             text-decoration: none;
         }
 
-        .contact-socials a:hover { color: var(--accent); }
+        .contact-socials a:hover {
+            color: var(--accent);
+        }
 
         .contact-location {
             font-family: var(--font-mono);
@@ -1185,7 +1448,9 @@
             transition: color 0.2s;
         }
 
-        .footer-links a:hover { color: var(--accent); }
+        .footer-links a:hover {
+            color: var(--accent);
+        }
 
         /* ========== SCROLL ANIMATIONS ========== */
         .reveal {
@@ -1199,35 +1464,82 @@
             transform: translateY(0);
         }
 
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
-            .container { padding: 0 1.5rem; }
-            .section { padding: 4rem 0; }
-
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-
-            .hero { padding: 6rem 0 3rem; min-height: auto; }
-            .hero h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
-            .hero-bio { font-size: 0.95rem; }
-
-            .highlights { grid-template-columns: repeat(2, 1fr); }
-            .highlight-card { padding: 1.25rem; }
-            .highlight-project { font-size: 0.95rem; }
-
-            .work-item {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+            .container {
+                padding: 0 1.5rem;
             }
 
-            .work-item::before { display: none; }
-            .work-badge { align-self: start; }
+            .section {
+                padding: 4rem 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 6rem 0 3rem;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.8rem, 10vw, 4rem);
+            }
+
+            .hero-bio {
+                font-size: 0.95rem;
+            }
+
+            .highlights {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .highlight-card {
+                padding: 1.25rem;
+            }
+
+            .highlight-project {
+                font-size: 0.95rem;
+            }
+
+            .work-item {
+                grid-template-columns: 100px 1fr;
+                gap: 1.5rem;
+            }
+
+            .work-item::before {
+                display: none;
+            }
+
+            .work-badge {
+                align-self: start;
+                grid-column: 2;
+            }
 
             .about-grid {
                 grid-template-columns: 1fr;
@@ -1239,86 +1551,252 @@
                 order: -1;
             }
 
-            .services-grid { grid-template-columns: 1fr; }
-            .service-card { padding: 2rem 1.5rem; }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
 
             /* Filmography: hide type column, allow horizontal scroll */
             .filmography-table th:nth-child(4),
-            .filmography-table td:nth-child(4) { display: none; }
+            .filmography-table td:nth-child(4) {
+                display: none;
+            }
 
-            .contact-section { padding: 5rem 0; }
-            .contact-heading { font-size: clamp(1.6rem, 5vw, 2.4rem); }
-            .contact-email { padding: 0.85rem 1.5rem; font-size: 0.85rem; }
-            .contact-socials { gap: 1.5rem; }
+            .contact-section {
+                padding: 5rem 0;
+            }
 
-            footer { padding: 2rem 0; }
-            .footer-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            .contact-heading {
+                font-size: clamp(1.6rem, 5vw, 2.4rem);
+            }
+
+            .contact-email {
+                padding: 0.85rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .contact-socials {
+                gap: 1.5rem;
+            }
+
+            footer {
+                padding: 2rem 0;
+            }
+
+            .footer-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
         }
 
         @media (max-width: 480px) {
-            .container { padding: 0 1.25rem; }
+            .container {
+                padding: 0 1.25rem;
+            }
 
-            .hero { padding: 5rem 0 2.5rem; }
-            .hero h1 { font-size: 2.4rem; }
-            .hero-role { font-size: 0.6rem; }
-            .hero-tagline { font-size: 0.95rem; }
-            .hero-bio { font-size: 0.88rem; max-width: 100%; }
-            .hero-actions { flex-direction: column; }
-            .btn-primary, .btn-secondary { text-align: center; width: 100%; }
+            .hero {
+                padding: 5rem 0 2.5rem;
+            }
 
-            .highlights { grid-template-columns: 1fr 1fr; gap: 1px; }
-            .highlight-card { padding: 1rem; }
-            .highlight-project { font-size: 0.88rem; }
-            .highlight-role { font-size: 0.55rem; }
-            .highlight-context { font-size: 0.72rem; }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
 
-            .section-heading { font-size: clamp(1.5rem, 6vw, 2rem); }
-            .work-title { font-size: 1.2rem; }
-            .work-meta { font-size: 0.65rem; }
+            .hero-role {
+                font-size: 0.6rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.95rem;
+            }
+
+            .hero-bio {
+                font-size: 0.88rem;
+                max-width: 100%;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                text-align: center;
+                width: 100%;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr 1fr;
+                gap: 1px;
+            }
+
+            .highlight-card {
+                padding: 1rem;
+            }
+
+            .highlight-project {
+                font-size: 0.88rem;
+            }
+
+            .highlight-role {
+                font-size: 0.55rem;
+            }
+
+            .highlight-context {
+                font-size: 0.72rem;
+            }
+
+            .section-heading {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+
+            .work-item {
+                grid-template-columns: 80px 1fr;
+                gap: 1.25rem;
+            }
+
+            .work-title {
+                font-size: 1.2rem;
+            }
+
+            .work-meta {
+                font-size: 0.65rem;
+            }
 
             /* Filmography: scrollable wrapper + hide role on very small */
-            .filmography-table { font-size: 0.78rem; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-            .filmography-table thead { display: table-header-group; }
-            .filmography-table tbody { display: table-row-group; }
-            .filmography-table tr { display: table-row; }
-            .filmography-table th, .filmography-table td { white-space: nowrap; padding: 0.75rem 0.75rem 0.75rem 0; }
+            .filmography-table {
+                font-size: 0.78rem;
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .filmography-table thead {
+                display: table-header-group;
+            }
+
+            .filmography-table tbody {
+                display: table-row-group;
+            }
+
+            .filmography-table tr {
+                display: table-row;
+            }
+
+            .filmography-table th,
+            .filmography-table td {
+                white-space: nowrap;
+                padding: 0.75rem 0.75rem 0.75rem 0;
+            }
+
             .filmography-table th:nth-child(3),
-            .filmography-table td:nth-child(3) { display: none; }
+            .filmography-table td:nth-child(3) {
+                display: none;
+            }
 
-            .about-text p { font-size: 0.9rem; }
+            .about-text p {
+                font-size: 0.9rem;
+            }
 
-            .service-card { padding: 1.5rem 1.25rem; }
-            .service-card h3 { font-size: 1rem; }
-            .service-card p { font-size: 0.85rem; }
+            .service-card {
+                padding: 1.5rem 1.25rem;
+            }
 
-            .contact-section { padding: 4rem 0; }
-            .contact-heading { font-size: 1.5rem; }
-            .contact-sub { font-size: 0.88rem; }
-            .contact-email { padding: 0.75rem 1.25rem; font-size: 0.78rem; word-break: break-all; }
-            .contact-socials { gap: 1.25rem; flex-wrap: wrap; justify-content: center; }
-            .contact-location { font-size: 0.6rem; }
+            .service-card h3 {
+                font-size: 1rem;
+            }
 
-            .mobile-overlay a { font-size: 1.5rem; }
-            .mobile-overlay { gap: 2rem; }
+            .service-card p {
+                font-size: 0.85rem;
+            }
+
+            .contact-section {
+                padding: 4rem 0;
+            }
+
+            .contact-heading {
+                font-size: 1.5rem;
+            }
+
+            .contact-sub {
+                font-size: 0.88rem;
+            }
+
+            .contact-email {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.78rem;
+                word-break: break-all;
+            }
+
+            .contact-socials {
+                gap: 1.25rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .contact-location {
+                font-size: 0.6rem;
+            }
+
+            .mobile-overlay a {
+                font-size: 1.5rem;
+            }
+
+            .mobile-overlay {
+                gap: 2rem;
+            }
         }
 
         @media (max-width: 360px) {
-            .container { padding: 0 1rem; }
-            .hero h1 { font-size: 2rem; }
-            .highlights { grid-template-columns: 1fr; }
-            .highlight-card { padding: 1rem; }
-            .contact-email { font-size: 0.72rem; padding: 0.7rem 1rem; }
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-card {
+                padding: 1rem;
+            }
+
+            .contact-email {
+                font-size: 0.72rem;
+                padding: 0.7rem 1rem;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .reveal { opacity: 1; transform: none; transition: none; }
-            html { scroll-behavior: auto; }
-            .grain { display: none; }
-            .nav-crew { display: none; }
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            .grain {
+                display: none;
+            }
+
+            .nav-crew {
+                display: none;
+            }
         }
 
         /* Focus styles */
-        a:focus-visible, button:focus-visible {
+        a:focus-visible,
+        button:focus-visible {
             outline: 2px solid var(--accent);
             outline-offset: 3px;
         }
@@ -1350,13 +1828,15 @@
     }
     </script>
 </head>
+
 <body>
 
     <div class="grain" aria-hidden="true"></div>
 
     <!-- Mobile Overlay Nav -->
     <div class="mobile-overlay" id="mobileNav" role="dialog" aria-label="Navigation menu">
-        <button class="mobile-close" id="mobileClose" aria-label="Close navigation"><i class="fas fa-times"></i></button>
+        <button class="mobile-close" id="mobileClose" aria-label="Close navigation"><i
+                class="fas fa-times"></i></button>
         <a href="#work" class="mobile-nav-link">Work</a>
         <a href="#filmography" class="mobile-nav-link">Filmography</a>
         <a href="#about" class="mobile-nav-link">About</a>
@@ -1380,55 +1860,55 @@
                 <div class="crew-fig fig-boom">
                     <svg viewBox="0 0 18 30">
                         <!-- Body fill (torso shape) -->
-                        <path class="body-fill" d="M7,9.5 L13,9.5 L12.5,17 L7.5,17 Z"/>
+                        <path class="body-fill" d="M7,9.5 L13,9.5 L12.5,17 L7.5,17 Z" />
                         <!-- Head -->
-                        <circle class="head-fill" cx="10" cy="4" r="2.8"/>
+                        <circle class="head-fill" cx="10" cy="4" r="2.8" />
                         <!-- Neck -->
-                        <line x1="10" y1="6.8" x2="10" y2="8.5" stroke-width="1.1"/>
+                        <line x1="10" y1="6.8" x2="10" y2="8.5" stroke-width="1.1" />
                         <!-- Torso outline -->
-                        <path d="M7,9.5 Q10,8.5 13,9.5 L12.5,17 L7.5,17 Z" stroke-width="0.8"/>
+                        <path d="M7,9.5 Q10,8.5 13,9.5 L12.5,17 L7.5,17 Z" stroke-width="0.8" />
                         <!-- Left leg: thigh pivots at hip, shin pivots at knee -->
                         <g class="uleg-l">
-                            <line x1="8.5" y1="17" x2="7" y2="22" stroke-width="1.4"/>
-                            <circle class="knee-dot" cx="7" cy="22" r="0.4" stroke-width="0.4"/>
+                            <line x1="8.5" y1="17" x2="7" y2="22" stroke-width="1.4" />
+                            <circle class="knee-dot" cx="7" cy="22" r="0.4" stroke-width="0.4" />
                             <g class="lleg-l">
-                                <line x1="7" y1="22" x2="5.5" y2="28" stroke-width="1.2"/>
-                                <line x1="5.5" y1="28" x2="4" y2="28.5" stroke-width="1"/>
+                                <line x1="7" y1="22" x2="5.5" y2="28" stroke-width="1.2" />
+                                <line x1="5.5" y1="28" x2="4" y2="28.5" stroke-width="1" />
                             </g>
                         </g>
                         <!-- Right leg -->
                         <g class="uleg-r">
-                            <line x1="11.5" y1="17" x2="13" y2="22" stroke-width="1.4"/>
-                            <circle class="knee-dot" cx="13" cy="22" r="0.4" stroke-width="0.4"/>
+                            <line x1="11.5" y1="17" x2="13" y2="22" stroke-width="1.4" />
+                            <circle class="knee-dot" cx="13" cy="22" r="0.4" stroke-width="0.4" />
                             <g class="lleg-r">
-                                <line x1="13" y1="22" x2="14" y2="28" stroke-width="1.2"/>
-                                <line x1="14" y1="28" x2="15.5" y2="28.5" stroke-width="1"/>
+                                <line x1="13" y1="22" x2="14" y2="28" stroke-width="1.2" />
+                                <line x1="14" y1="28" x2="15.5" y2="28.5" stroke-width="1" />
                             </g>
                         </g>
                         <!-- Left arm (rear): shoulder→elbow back/down, forearm bends up to grip pole behind head -->
                         <g class="uarm-l">
-                            <line x1="7" y1="9.5" x2="4.5" y2="7.5" stroke-width="1.2"/>
-                            <line x1="4.5" y1="7.5" x2="7" y2="2" stroke-width="1"/>
+                            <line x1="7" y1="9.5" x2="4.5" y2="7.5" stroke-width="1.2" />
+                            <line x1="4.5" y1="7.5" x2="7" y2="2" stroke-width="1" />
                         </g>
                         <!-- Right arm (front): raised high, straighter reach up to pole -->
                         <g class="uarm-r">
-                            <line x1="13" y1="9.5" x2="14.5" y2="5" stroke-width="1.2"/>
-                            <line x1="14.5" y1="5" x2="14" y2="1" stroke-width="1"/>
+                            <line x1="13" y1="9.5" x2="14.5" y2="5" stroke-width="1.2" />
+                            <line x1="14.5" y1="5" x2="14" y2="1" stroke-width="1" />
                         </g>
                         <!-- Boom pole: grip at top of right hand, extends across entire crew -->
                         <!-- 18px wide fig + 2px gap = 20px pitch. Pole reaches ~3.5 figs right -->
                         <g class="boom-pole">
-                            <line x1="14" y1="1" x2="74" y2="-10" stroke-width="0.6"/>
+                            <line x1="14" y1="1" x2="74" y2="-10" stroke-width="0.6" />
                             <!-- Shock mount / suspension bracket at end of pole -->
-                            <line x1="73.5" y1="-10" x2="73.5" y2="-8.5" stroke-width="0.4"/>
-                            <line x1="74.5" y1="-10" x2="74.5" y2="-8.5" stroke-width="0.4"/>
-                            <line x1="73" y1="-8.5" x2="75" y2="-8.5" stroke-width="0.4"/>
+                            <line x1="73.5" y1="-10" x2="73.5" y2="-8.5" stroke-width="0.4" />
+                            <line x1="74.5" y1="-10" x2="74.5" y2="-8.5" stroke-width="0.4" />
+                            <line x1="73" y1="-8.5" x2="75" y2="-8.5" stroke-width="0.4" />
                             <!-- Zeppelin/blimp windscreen: 60% below pole, 40% above -->
-                            <ellipse cx="74" cy="-6.2" rx="1.8" ry="3.8" stroke-width="0.5"/>
+                            <ellipse cx="74" cy="-6.2" rx="1.8" ry="3.8" stroke-width="0.5" />
                             <!-- Zeppelin cage ribs -->
-                            <line x1="72.2" y1="-7" x2="75.8" y2="-7" stroke-width="0.25"/>
-                            <line x1="72.4" y1="-5.2" x2="75.6" y2="-5.2" stroke-width="0.25"/>
-                            <line x1="73" y1="-3.5" x2="75" y2="-3.5" stroke-width="0.25"/>
+                            <line x1="72.2" y1="-7" x2="75.8" y2="-7" stroke-width="0.25" />
+                            <line x1="72.4" y1="-5.2" x2="75.6" y2="-5.2" stroke-width="0.25" />
+                            <line x1="73" y1="-3.5" x2="75" y2="-3.5" stroke-width="0.25" />
                         </g>
                     </svg>
                 </div>
@@ -1436,92 +1916,92 @@
                 <div class="crew-fig fig-cam">
                     <svg viewBox="0 0 18 30">
                         <!-- Body fill -->
-                        <path class="body-fill" d="M6.5,9.5 L13.5,9.5 L13,17 L7,17 Z"/>
+                        <path class="body-fill" d="M6.5,9.5 L13.5,9.5 L13,17 L7,17 Z" />
                         <!-- Head (slightly forward for peering through viewfinder) -->
-                        <circle class="head-fill" cx="11" cy="4" r="2.8"/>
+                        <circle class="head-fill" cx="11" cy="4" r="2.8" />
                         <!-- Neck (angled forward) -->
-                        <line x1="11" y1="6.8" x2="10.5" y2="8.5" stroke-width="1.1"/>
+                        <line x1="11" y1="6.8" x2="10.5" y2="8.5" stroke-width="1.1" />
                         <!-- Torso outline -->
-                        <path d="M6.5,9.5 Q10,8.5 13.5,9.5 L13,17 L7,17 Z" stroke-width="0.8"/>
+                        <path d="M6.5,9.5 Q10,8.5 13.5,9.5 L13,17 L7,17 Z" stroke-width="0.8" />
                         <!-- Left leg: thigh + knee + shin -->
                         <g class="uleg-l">
-                            <line x1="8" y1="17" x2="6.5" y2="22" stroke-width="1.4"/>
-                            <circle class="knee-dot" cx="6.5" cy="22" r="0.4" stroke-width="0.4"/>
+                            <line x1="8" y1="17" x2="6.5" y2="22" stroke-width="1.4" />
+                            <circle class="knee-dot" cx="6.5" cy="22" r="0.4" stroke-width="0.4" />
                             <g class="lleg-l">
-                                <line x1="6.5" y1="22" x2="5.5" y2="28" stroke-width="1.2"/>
-                                <line x1="5.5" y1="28" x2="4" y2="28.5" stroke-width="1"/>
+                                <line x1="6.5" y1="22" x2="5.5" y2="28" stroke-width="1.2" />
+                                <line x1="5.5" y1="28" x2="4" y2="28.5" stroke-width="1" />
                             </g>
                         </g>
                         <!-- Right leg -->
                         <g class="uleg-r">
-                            <line x1="12" y1="17" x2="13.5" y2="22" stroke-width="1.4"/>
-                            <circle class="knee-dot" cx="13.5" cy="22" r="0.4" stroke-width="0.4"/>
+                            <line x1="12" y1="17" x2="13.5" y2="22" stroke-width="1.4" />
+                            <circle class="knee-dot" cx="13.5" cy="22" r="0.4" stroke-width="0.4" />
                             <g class="lleg-r">
-                                <line x1="13.5" y1="22" x2="14.5" y2="28" stroke-width="1.2"/>
-                                <line x1="14.5" y1="28" x2="16" y2="28.5" stroke-width="1"/>
+                                <line x1="13.5" y1="22" x2="14.5" y2="28" stroke-width="1.2" />
+                                <line x1="14.5" y1="28" x2="16" y2="28.5" stroke-width="1" />
                             </g>
                         </g>
                         <!-- Left arm (forward, supporting camera underneath) -->
                         <g class="uarm-l">
-                            <line x1="7" y1="10" x2="6" y2="12" stroke-width="1.2"/>
-                            <line x1="6" y1="12" x2="8" y2="11" stroke-width="1"/>
+                            <line x1="7" y1="10" x2="6" y2="12" stroke-width="1.2" />
+                            <line x1="6" y1="12" x2="8" y2="11" stroke-width="1" />
                         </g>
                         <!-- Right arm (up and back, gripping camera rear) -->
                         <g class="uarm-r">
-                            <line x1="13" y1="10" x2="15" y2="8" stroke-width="1.2"/>
-                            <line x1="15" y1="8" x2="16" y2="7" stroke-width="1"/>
+                            <line x1="13" y1="10" x2="15" y2="8" stroke-width="1.2" />
+                            <line x1="15" y1="8" x2="16" y2="7" stroke-width="1" />
                         </g>
                         <!-- Camera body (on right shoulder) -->
-                        <rect x="13" y="5.5" width="6" height="4" rx="0.7" stroke-width="0.8"/>
+                        <rect x="13" y="5.5" width="6" height="4" rx="0.7" stroke-width="0.8" />
                         <!-- Lens barrel -->
-                        <rect x="19" y="6.2" width="3" height="2.6" rx="1.3" stroke-width="0.7"/>
+                        <rect x="19" y="6.2" width="3" height="2.6" rx="1.3" stroke-width="0.7" />
                         <!-- Lens glass -->
-                        <circle cx="22.2" cy="7.5" r="1" stroke-width="0.6"/>
+                        <circle cx="22.2" cy="7.5" r="1" stroke-width="0.6" />
                         <!-- Viewfinder -->
-                        <rect x="14" y="4.2" width="2" height="1.5" rx="0.3" stroke-width="0.5"/>
-                        <line x1="15" y1="4.2" x2="12" y2="4" stroke-width="0.4"/>
+                        <rect x="14" y="4.2" width="2" height="1.5" rx="0.3" stroke-width="0.5" />
+                        <line x1="15" y1="4.2" x2="12" y2="4" stroke-width="0.4" />
                         <!-- Record light -->
-                        <circle cx="13.5" cy="5.8" r="0.4" fill="var(--accent)" stroke="none" opacity="0.6"/>
+                        <circle cx="13.5" cy="5.8" r="0.4" fill="var(--accent)" stroke="none" opacity="0.6" />
                     </svg>
                 </div>
                 <!-- Actor 1 -->
                 <div class="crew-fig">
                     <svg viewBox="0 0 18 30">
                         <!-- Body fill -->
-                        <path class="body-fill" d="M7,9.5 L13,9.5 L12,17 L8,17 Z"/>
+                        <path class="body-fill" d="M7,9.5 L13,9.5 L12,17 L8,17 Z" />
                         <!-- Head -->
-                        <circle class="head-fill" cx="10" cy="4" r="2.8"/>
+                        <circle class="head-fill" cx="10" cy="4" r="2.8" />
                         <!-- Neck -->
-                        <line x1="10" y1="6.8" x2="10" y2="8.5" stroke-width="1.1"/>
+                        <line x1="10" y1="6.8" x2="10" y2="8.5" stroke-width="1.1" />
                         <!-- Torso outline -->
-                        <path d="M7,9.5 Q10,8.5 13,9.5 L12,17 L8,17 Z" stroke-width="0.8"/>
+                        <path d="M7,9.5 Q10,8.5 13,9.5 L12,17 L8,17 Z" stroke-width="0.8" />
                         <!-- Left leg: thigh + knee + shin -->
                         <g class="uleg-l">
-                            <line x1="8.5" y1="17" x2="7" y2="22" stroke-width="1.4"/>
-                            <circle class="knee-dot" cx="7" cy="22" r="0.4" stroke-width="0.4"/>
+                            <line x1="8.5" y1="17" x2="7" y2="22" stroke-width="1.4" />
+                            <circle class="knee-dot" cx="7" cy="22" r="0.4" stroke-width="0.4" />
                             <g class="lleg-l">
-                                <line x1="7" y1="22" x2="6" y2="28" stroke-width="1.2"/>
-                                <line x1="6" y1="28" x2="4.5" y2="28.5" stroke-width="1"/>
+                                <line x1="7" y1="22" x2="6" y2="28" stroke-width="1.2" />
+                                <line x1="6" y1="28" x2="4.5" y2="28.5" stroke-width="1" />
                             </g>
                         </g>
                         <!-- Right leg -->
                         <g class="uleg-r">
-                            <line x1="11.5" y1="17" x2="13" y2="22" stroke-width="1.4"/>
-                            <circle class="knee-dot" cx="13" cy="22" r="0.4" stroke-width="0.4"/>
+                            <line x1="11.5" y1="17" x2="13" y2="22" stroke-width="1.4" />
+                            <circle class="knee-dot" cx="13" cy="22" r="0.4" stroke-width="0.4" />
                             <g class="lleg-r">
-                                <line x1="13" y1="22" x2="14" y2="28" stroke-width="1.2"/>
-                                <line x1="14" y1="28" x2="15.5" y2="28.5" stroke-width="1"/>
+                                <line x1="13" y1="22" x2="14" y2="28" stroke-width="1.2" />
+                                <line x1="14" y1="28" x2="15.5" y2="28.5" stroke-width="1" />
                             </g>
                         </g>
                         <!-- Left arm -->
                         <g class="uarm-l">
-                            <line x1="7" y1="9.5" x2="5" y2="13" stroke-width="1.2"/>
-                            <line x1="5" y1="13" x2="4.5" y2="17" stroke-width="1"/>
+                            <line x1="7" y1="9.5" x2="5" y2="13" stroke-width="1.2" />
+                            <line x1="5" y1="13" x2="4.5" y2="17" stroke-width="1" />
                         </g>
                         <!-- Right arm -->
                         <g class="uarm-r">
-                            <line x1="13" y1="9.5" x2="15" y2="13" stroke-width="1.2"/>
-                            <line x1="15" y1="13" x2="15.5" y2="17" stroke-width="1"/>
+                            <line x1="13" y1="9.5" x2="15" y2="13" stroke-width="1.2" />
+                            <line x1="15" y1="13" x2="15.5" y2="17" stroke-width="1" />
                         </g>
                     </svg>
                 </div>
@@ -1529,40 +2009,40 @@
                 <div class="crew-fig">
                     <svg viewBox="0 0 18 30">
                         <!-- Body fill -->
-                        <path class="body-fill" d="M7,9.5 L13,9.5 L12,17 L8,17 Z"/>
+                        <path class="body-fill" d="M7,9.5 L13,9.5 L12,17 L8,17 Z" />
                         <!-- Head -->
-                        <circle class="head-fill" cx="10" cy="4" r="2.8"/>
+                        <circle class="head-fill" cx="10" cy="4" r="2.8" />
                         <!-- Neck -->
-                        <line x1="10" y1="6.8" x2="10" y2="8.5" stroke-width="1.1"/>
+                        <line x1="10" y1="6.8" x2="10" y2="8.5" stroke-width="1.1" />
                         <!-- Torso outline -->
-                        <path d="M7,9.5 Q10,8.5 13,9.5 L12,17 L8,17 Z" stroke-width="0.8"/>
+                        <path d="M7,9.5 Q10,8.5 13,9.5 L12,17 L8,17 Z" stroke-width="0.8" />
                         <!-- Left leg: thigh + knee + shin -->
                         <g class="uleg-l">
-                            <line x1="8.5" y1="17" x2="7" y2="22" stroke-width="1.4"/>
-                            <circle class="knee-dot" cx="7" cy="22" r="0.4" stroke-width="0.4"/>
+                            <line x1="8.5" y1="17" x2="7" y2="22" stroke-width="1.4" />
+                            <circle class="knee-dot" cx="7" cy="22" r="0.4" stroke-width="0.4" />
                             <g class="lleg-l">
-                                <line x1="7" y1="22" x2="6.5" y2="28" stroke-width="1.2"/>
-                                <line x1="6.5" y1="28" x2="5" y2="28.5" stroke-width="1"/>
+                                <line x1="7" y1="22" x2="6.5" y2="28" stroke-width="1.2" />
+                                <line x1="6.5" y1="28" x2="5" y2="28.5" stroke-width="1" />
                             </g>
                         </g>
                         <!-- Right leg -->
                         <g class="uleg-r">
-                            <line x1="11.5" y1="17" x2="13" y2="22" stroke-width="1.4"/>
-                            <circle class="knee-dot" cx="13" cy="22" r="0.4" stroke-width="0.4"/>
+                            <line x1="11.5" y1="17" x2="13" y2="22" stroke-width="1.4" />
+                            <circle class="knee-dot" cx="13" cy="22" r="0.4" stroke-width="0.4" />
                             <g class="lleg-r">
-                                <line x1="13" y1="22" x2="14.5" y2="28" stroke-width="1.2"/>
-                                <line x1="14.5" y1="28" x2="16" y2="28.5" stroke-width="1"/>
+                                <line x1="13" y1="22" x2="14.5" y2="28" stroke-width="1.2" />
+                                <line x1="14.5" y1="28" x2="16" y2="28.5" stroke-width="1" />
                             </g>
                         </g>
                         <!-- Left arm (slightly gestural) -->
                         <g class="uarm-l">
-                            <line x1="7" y1="9.5" x2="4.5" y2="13" stroke-width="1.2"/>
-                            <line x1="4.5" y1="13" x2="3.5" y2="16" stroke-width="1"/>
+                            <line x1="7" y1="9.5" x2="4.5" y2="13" stroke-width="1.2" />
+                            <line x1="4.5" y1="13" x2="3.5" y2="16" stroke-width="1" />
                         </g>
                         <!-- Right arm -->
                         <g class="uarm-r">
-                            <line x1="13" y1="9.5" x2="15.5" y2="13" stroke-width="1.2"/>
-                            <line x1="15.5" y1="13" x2="16.5" y2="16.5" stroke-width="1"/>
+                            <line x1="13" y1="9.5" x2="15.5" y2="13" stroke-width="1.2" />
+                            <line x1="15.5" y1="13" x2="16.5" y2="16.5" stroke-width="1" />
                         </g>
                     </svg>
                 </div>
@@ -1606,7 +2086,8 @@
             <div class="highlights reveal reveal-delay-4" id="highlightsGrid"></div>
             <div class="hero-actions reveal reveal-delay-5">
                 <a href="mailto:contact@waterforge.com.au" class="btn-primary">Check Availability</a>
-                <a href="https://www.imdb.com/name/nm7138208/" target="_blank" rel="noopener" class="btn-secondary" aria-label="View Damon Sheridan on IMDb">IMDb Profile</a>
+                <a href="https://www.imdb.com/name/nm7138208/" target="_blank" rel="noopener" class="btn-secondary"
+                    aria-label="View Damon Sheridan on IMDb">IMDb Profile</a>
             </div>
         </header>
 
@@ -1615,24 +2096,37 @@
             <span class="section-label reveal">Selected Work</span>
 
             <div class="work-item reveal">
+                <img src="https://m.media-amazon.com/images/M/MV5BMTNlMTk1YTItOWYxNi00ZWIzLTkyOWEtNTJmMzk4NmIyN2NmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                    class="work-poster" alt="Anaconda Poster">
                 <div>
-                    <a href="https://www.imdb.com/title/tt33244668/" target="_blank" rel="noopener" class="work-title-link"><div class="work-title">Anaconda</div></a>
-                    <div class="work-meta">2025 &nbsp;&middot;&nbsp; Additional First Assistant Sound &nbsp;&middot;&nbsp; Feature Film</div>
+                    <a href="https://www.imdb.com/title/tt33244668/" target="_blank" rel="noopener"
+                        class="work-title-link">
+                        <div class="work-title">Anaconda</div>
+                    </a>
+                    <div class="work-meta">2025 &nbsp;&middot;&nbsp; Additional First Assistant Sound
+                        &nbsp;&middot;&nbsp; Feature Film</div>
                     <p class="work-description">
                         Major studio creature-feature reimagining for Sony Pictures / Columbia.
                         Location sound in dense rainforest environments with complex multi-talent setups.
                     </p>
                     <div class="work-credits">
-                        Directed by <span>Tom Gormican</span> &nbsp;&middot;&nbsp; Starring <span>Jack Black</span> &amp; <span>Paul Rudd</span>
+                        Directed by <span>Tom Gormican</span> &nbsp;&middot;&nbsp; Starring <span>Jack Black</span>
+                        &amp; <span>Paul Rudd</span>
                     </div>
                 </div>
                 <div class="work-badge">Feature</div>
             </div>
 
             <div class="work-item reveal">
+                <img src="https://m.media-amazon.com/images/M/MV5BMWRhZGE5YTMtMDg4NC00NTFjLTg4MTEtMzA2MmVhM2UxNDdlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                    class="work-poster" alt="Killer Whale Poster">
                 <div>
-                    <a href="https://www.imdb.com/title/tt33479805/" target="_blank" rel="noopener" class="work-title-link"><div class="work-title">Killer Whale</div></a>
-                    <div class="work-meta">2026 &nbsp;&middot;&nbsp; Boom Operator &nbsp;&middot;&nbsp; Feature Film</div>
+                    <a href="https://www.imdb.com/title/tt33479805/" target="_blank" rel="noopener"
+                        class="work-title-link">
+                        <div class="work-title">Killer Whale</div>
+                    </a>
+                    <div class="work-meta">2026 &nbsp;&middot;&nbsp; Boom Operator &nbsp;&middot;&nbsp; Feature Film
+                    </div>
                     <p class="work-description">
                         Feature film production. Boom operation across varied shooting environments.
                     </p>
@@ -1641,9 +2135,15 @@
             </div>
 
             <div class="work-item reveal">
+                <img src="https://m.media-amazon.com/images/M/MV5BYjVhNWFkYjItMThjOS00OGRiLTllMzMtZTg5OGU0NDhmMzM3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                    class="work-poster" alt="A Series of Unfortunate Dates Poster">
                 <div>
-                    <a href="https://www.imdb.com/title/tt32247012/" target="_blank" rel="noopener" class="work-title-link"><div class="work-title">A Series of Unfortunate Dates</div></a>
-                    <div class="work-meta">2025 &nbsp;&middot;&nbsp; Sound Recordist &nbsp;&middot;&nbsp; <span class="accent">2026 AACTA Award Winner</span></div>
+                    <a href="https://www.imdb.com/title/tt32247012/" target="_blank" rel="noopener"
+                        class="work-title-link">
+                        <div class="work-title">A Series of Unfortunate Dates</div>
+                    </a>
+                    <div class="work-meta">2025 &nbsp;&middot;&nbsp; Sound Recordist &nbsp;&middot;&nbsp; <span
+                            class="accent">2026 AACTA Award Winner</span></div>
                     <p class="work-description">
                         Online comedy web series. Winner of the 2026 AACTA Award for Best Online Drama or Comedy.
                     </p>
@@ -1652,9 +2152,15 @@
             </div>
 
             <div class="work-item reveal">
+                <img src="https://m.media-amazon.com/images/M/MV5BYWNjNGJlMDktNTk5Yy00ODNlLTlmNzAtZWYyNmMwYzQ2MGIyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                    class="work-poster" alt="Wolfe Poster">
                 <div>
-                    <a href="https://www.imdb.com/title/tt6946962/" target="_blank" rel="noopener" class="work-title-link"><div class="work-title">Wolfe</div></a>
-                    <div class="work-meta">2017 &nbsp;&middot;&nbsp; Sound Editor &nbsp;&middot;&nbsp; <span class="accent">Berlinale Crystal Bear</span></div>
+                    <a href="https://www.imdb.com/title/tt6946962/" target="_blank" rel="noopener"
+                        class="work-title-link">
+                        <div class="work-title">Wolfe</div>
+                    </a>
+                    <div class="work-meta">2017 &nbsp;&middot;&nbsp; Sound Editor &nbsp;&middot;&nbsp; <span
+                            class="accent">Berlinale Crystal Bear</span></div>
                     <p class="work-description">
                         Short documentary exploring mental health through animation and live action.
                         The film won the Crystal Bear for Best Film in the Generation 14plus programme
@@ -1669,9 +2175,15 @@
             </div>
 
             <div class="work-item reveal">
+                <img src="https://m.media-amazon.com/images/M/MV5BZTViNTEwMTMtMjIzNy00M2E1LTkzZmEtMTRlOTQ1ZTkwZDE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                    class="work-poster" alt="Far End of the Sea Poster">
                 <div>
-                    <a href="https://www.imdb.com/title/tt39742493/" target="_blank" rel="noopener" class="work-title-link"><div class="work-title">Far End of the Sea</div></a>
-                    <div class="work-meta">Post-Production &nbsp;&middot;&nbsp; Sound Recordist &nbsp;&middot;&nbsp; Short Film</div>
+                    <a href="https://www.imdb.com/title/tt39742493/" target="_blank" rel="noopener"
+                        class="work-title-link">
+                        <div class="work-title">Far End of the Sea</div>
+                    </a>
+                    <div class="work-meta">Post-Production &nbsp;&middot;&nbsp; Sound Recordist &nbsp;&middot;&nbsp;
+                        Short Film</div>
                     <p class="work-description">
                         The first film ever produced in the island nation of Nauru. Location recording
                         in extreme equatorial conditions &mdash; sustained humidity and salt-air exposure on
@@ -1682,9 +2194,15 @@
             </div>
 
             <div class="work-item reveal">
+                <img src="https://m.media-amazon.com/images/M/MV5BMDFjZmY4ZTktYTcxZi00NGU4LWEyYzMtZTE1OTY0ZDE2YjJlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                    class="work-poster" alt="Good Cop / Bad Cop Poster">
                 <div>
-                    <a href="https://www.imdb.com/title/tt31691565/" target="_blank" rel="noopener" class="work-title-link"><div class="work-title">Good Cop / Bad Cop</div></a>
-                    <div class="work-meta">2025 &nbsp;&middot;&nbsp; Boom Operator &nbsp;&middot;&nbsp; TV Series (4 Episodes)</div>
+                    <a href="https://www.imdb.com/title/tt31691565/" target="_blank" rel="noopener"
+                        class="work-title-link">
+                        <div class="work-title">Good Cop / Bad Cop</div>
+                    </a>
+                    <div class="work-meta">2025 &nbsp;&middot;&nbsp; Boom Operator &nbsp;&middot;&nbsp; TV Series (4
+                        Episodes)</div>
                     <p class="work-description">
                         Television series. Boom operation across multi-episode production schedule.
                     </p>
@@ -1697,7 +2215,8 @@
         <section class="container section" id="filmography">
             <span class="section-label reveal">Filmography</span>
             <h2 class="section-heading reveal">Select Credits</h2>
-            <p class="reveal" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">43+ sound department credits. Curated highlights below.</p>
+            <p class="reveal" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">43+ sound
+                department credits. Curated highlights below.</p>
 
             <table class="filmography-table reveal">
                 <thead>
@@ -1711,73 +2230,87 @@
                 <tbody>
                     <tr>
                         <td>—</td>
-                        <td><a href="https://www.imdb.com/title/tt34984613/" target="_blank" rel="noopener"><span class="film-name">You, Always</span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt34984613/" target="_blank" rel="noopener"><span
+                                    class="film-name">You, Always</span></a></td>
                         <td>Boom Operator</td>
                         <td><span class="film-type-badge">Upcoming</span></td>
                     </tr>
                     <tr>
                         <td>—</td>
-                        <td><a href="https://www.imdb.com/title/tt39742493/" target="_blank" rel="noopener"><span class="film-name">Far End of the Sea</span><span class="film-award-dot" title="First film produced in Nauru"></span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt39742493/" target="_blank" rel="noopener"><span
+                                    class="film-name">Far End of the Sea</span><span class="film-award-dot"
+                                    title="First film produced in Nauru"></span></a></td>
                         <td>Sound Recordist</td>
                         <td><span class="film-type-badge">Short &middot; Post-Prod</span></td>
                     </tr>
                     <tr>
                         <td>—</td>
-                        <td><a href="https://www.imdb.com/title/tt31049910/" target="_blank" rel="noopener"><span class="film-name">Scattered</span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt31049910/" target="_blank" rel="noopener"><span
+                                    class="film-name">Scattered</span></a></td>
                         <td>Sound Recordist / Designer</td>
                         <td><span class="film-type-badge">Short &middot; Completed</span></td>
                     </tr>
                     <tr>
                         <td>2026</td>
-                        <td><a href="https://www.imdb.com/title/tt33479805/" target="_blank" rel="noopener"><span class="film-name">Killer Whale</span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt33479805/" target="_blank" rel="noopener"><span
+                                    class="film-name">Killer Whale</span></a></td>
                         <td>Boom Operator</td>
                         <td><span class="film-type-badge">Feature</span></td>
                     </tr>
                     <tr>
                         <td>2025</td>
-                        <td><a href="https://www.imdb.com/title/tt33244668/" target="_blank" rel="noopener"><span class="film-name">Anaconda</span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt33244668/" target="_blank" rel="noopener"><span
+                                    class="film-name">Anaconda</span></a></td>
                         <td>Addl. First Asst. Sound</td>
                         <td><span class="film-type-badge">Feature &middot; Sony</span></td>
                     </tr>
                     <tr>
                         <td>2025</td>
-                        <td><a href="https://www.imdb.com/title/tt32247012/" target="_blank" rel="noopener"><span class="film-name">A Series of Unfortunate Dates</span><span class="film-award-dot" title="2026 AACTA Award Winner"></span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt32247012/" target="_blank" rel="noopener"><span
+                                    class="film-name">A Series of Unfortunate Dates</span><span class="film-award-dot"
+                                    title="2026 AACTA Award Winner"></span></a></td>
                         <td>Sound Recordist</td>
                         <td><span class="film-type-badge">Web Series &middot; AACTA</span></td>
                     </tr>
                     <tr>
                         <td>2025</td>
-                        <td><a href="https://www.imdb.com/title/tt31691565/" target="_blank" rel="noopener"><span class="film-name">Good Cop / Bad Cop</span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt31691565/" target="_blank" rel="noopener"><span
+                                    class="film-name">Good Cop / Bad Cop</span></a></td>
                         <td>Boom Operator</td>
                         <td><span class="film-type-badge">TV Series</span></td>
                     </tr>
                     <tr>
                         <td>2025</td>
-                        <td><a href="https://www.imdb.com/title/tt36585628/" target="_blank" rel="noopener"><span class="film-name">Beauty from Pain</span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt36585628/" target="_blank" rel="noopener"><span
+                                    class="film-name">Beauty from Pain</span></a></td>
                         <td>Boom Operator Cover</td>
                         <td><span class="film-type-badge">Feature</span></td>
                     </tr>
                     <tr>
                         <td>2024</td>
-                        <td><a href="https://www.imdb.com/title/tt16025158/" target="_blank" rel="noopener"><span class="film-name">Take My Hand</span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt16025158/" target="_blank" rel="noopener"><span
+                                    class="film-name">Take My Hand</span></a></td>
                         <td>Additional Boom Operator</td>
                         <td><span class="film-type-badge">Feature</span></td>
                     </tr>
                     <tr>
                         <td>2024</td>
-                        <td><a href="https://www.imdb.com/title/tt32143201/" target="_blank" rel="noopener"><span class="film-name">Afterglow</span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt32143201/" target="_blank" rel="noopener"><span
+                                    class="film-name">Afterglow</span></a></td>
                         <td>Sound Designer / Recordist</td>
                         <td><span class="film-type-badge">Short</span></td>
                     </tr>
                     <tr>
                         <td>2023</td>
-                        <td><a href="https://www.imdb.com/title/tt14616912/" target="_blank" rel="noopener"><span class="film-name">It's a Cult!</span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt14616912/" target="_blank" rel="noopener"><span
+                                    class="film-name">It's a Cult!</span></a></td>
                         <td>Sound Recordist</td>
                         <td><span class="film-type-badge">TV Series</span></td>
                     </tr>
                     <tr>
                         <td>2023</td>
-                        <td><a href="https://www.imdb.com/title/tt17280246/" target="_blank" rel="noopener"><span class="film-name">Once Upon A Midnight</span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt17280246/" target="_blank" rel="noopener"><span
+                                    class="film-name">Once Upon A Midnight</span></a></td>
                         <td>Sound Designer / Recordist</td>
                         <td><span class="film-type-badge">Short</span></td>
                     </tr>
@@ -1789,20 +2322,24 @@
                     </tr>
                     <tr>
                         <td>2019</td>
-                        <td><a href="https://www.imdb.com/title/tt10204560/" target="_blank" rel="noopener"><span class="film-name">Nevernight</span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt10204560/" target="_blank" rel="noopener"><span
+                                    class="film-name">Nevernight</span></a></td>
                         <td>Sound</td>
                         <td><span class="film-type-badge">TV Movie</span></td>
                     </tr>
                     <tr>
                         <td>2017</td>
-                        <td><a href="https://www.imdb.com/title/tt6946962/" target="_blank" rel="noopener"><span class="film-name">Wolfe</span><span class="film-award-dot" title="Crystal Bear — Berlinale"></span></a></td>
+                        <td><a href="https://www.imdb.com/title/tt6946962/" target="_blank" rel="noopener"><span
+                                    class="film-name">Wolfe</span><span class="film-award-dot"
+                                    title="Crystal Bear — Berlinale"></span></a></td>
                         <td>Sound Editor</td>
                         <td><span class="film-type-badge">Short &middot; Berlinale</span></td>
                     </tr>
                 </tbody>
             </table>
 
-            <a href="https://www.imdb.com/name/nm7138208/" target="_blank" rel="noopener" class="filmography-link reveal">
+            <a href="https://www.imdb.com/name/nm7138208/" target="_blank" rel="noopener"
+                class="filmography-link reveal">
                 Full filmography on IMDb &rarr;
             </a>
         </section>
@@ -1837,7 +2374,8 @@
                         <h3>Education</h3>
                         <div class="edu-item">
                             <div class="edu-school">Griffith University</div>
-                            <div class="edu-detail">Bachelor's &mdash; Film &amp; Video Technology (2014&ndash;2016)</div>
+                            <div class="edu-detail">Bachelor's &mdash; Film &amp; Video Technology (2014&ndash;2016)
+                            </div>
                         </div>
                         <div class="edu-item">
                             <div class="edu-school">Southbank Institute of Technology</div>
@@ -1864,16 +2402,16 @@
                     <div class="service-icon svc-icon-sound">
                         <svg viewBox="0 0 24 24" stroke-width="1.6">
                             <!-- Microphone body -->
-                            <rect x="9" y="2" width="6" height="12" rx="3"/>
+                            <rect x="9" y="2" width="6" height="12" rx="3" />
                             <!-- Stand -->
-                            <path d="M12 18v3"/>
-                            <path d="M8 21h8"/>
+                            <path d="M12 18v3" />
+                            <path d="M8 21h8" />
                             <!-- Base arc -->
-                            <path d="M5 11a7 7 0 0 0 14 0" stroke-width="1.4"/>
+                            <path d="M5 11a7 7 0 0 0 14 0" stroke-width="1.4" />
                             <!-- Sound waves -->
-                            <path class="svc-wave svc-wave-1" d="M20 8a4 4 0 0 1 0 8" stroke-width="1.2"/>
-                            <path class="svc-wave svc-wave-2" d="M23 5.5a8 8 0 0 1 0 13" stroke-width="1"/>
-                            <path class="svc-wave svc-wave-3" d="M26 3a12 12 0 0 1 0 18" stroke-width="0.8"/>
+                            <path class="svc-wave svc-wave-1" d="M20 8a4 4 0 0 1 0 8" stroke-width="1.2" />
+                            <path class="svc-wave svc-wave-2" d="M23 5.5a8 8 0 0 1 0 13" stroke-width="1" />
+                            <path class="svc-wave svc-wave-3" d="M26 3a12 12 0 0 1 0 18" stroke-width="0.8" />
                         </svg>
                     </div>
                     <div class="service-name">Production Sound Recording</div>
@@ -1887,18 +2425,21 @@
                     <div class="service-icon svc-icon-editing">
                         <svg viewBox="0 0 24 24" stroke-width="1.6">
                             <!-- Fader tracks -->
-                            <line x1="4" y1="3" x2="4" y2="21"/>
-                            <line x1="12" y1="3" x2="12" y2="21"/>
-                            <line x1="20" y1="3" x2="20" y2="21"/>
+                            <line x1="4" y1="3" x2="4" y2="21" />
+                            <line x1="12" y1="3" x2="12" y2="21" />
+                            <line x1="20" y1="3" x2="20" y2="21" />
                             <!-- Fader knobs (animated) -->
                             <g class="svc-fader-knob-1">
-                                <rect x="1.5" y="9" width="5" height="3" rx="0.8" fill="var(--accent)" stroke="var(--accent)"/>
+                                <rect x="1.5" y="9" width="5" height="3" rx="0.8" fill="var(--accent)"
+                                    stroke="var(--accent)" />
                             </g>
                             <g class="svc-fader-knob-2">
-                                <rect x="9.5" y="13" width="5" height="3" rx="0.8" fill="var(--accent)" stroke="var(--accent)"/>
+                                <rect x="9.5" y="13" width="5" height="3" rx="0.8" fill="var(--accent)"
+                                    stroke="var(--accent)" />
                             </g>
                             <g class="svc-fader-knob-3">
-                                <rect x="17.5" y="7" width="5" height="3" rx="0.8" fill="var(--accent)" stroke="var(--accent)"/>
+                                <rect x="17.5" y="7" width="5" height="3" rx="0.8" fill="var(--accent)"
+                                    stroke="var(--accent)" />
                             </g>
                         </svg>
                     </div>
@@ -1913,12 +2454,15 @@
                     <div class="service-icon svc-icon-consulting">
                         <svg viewBox="0 0 24 24" stroke-width="1.6">
                             <!-- Magnifying glass / search -->
-                            <circle cx="10" cy="10" r="7"/>
-                            <line x1="15" y1="15" x2="21" y2="21" stroke-width="2"/>
+                            <circle cx="10" cy="10" r="7" />
+                            <line x1="15" y1="15" x2="21" y2="21" stroke-width="2" />
                             <!-- Floating symbols -->
-                            <text class="svc-symbol svc-q1" x="1" y="6" fill="var(--accent)" stroke="none" font-size="5" font-family="var(--font-mono)">?</text>
-                            <text class="svc-symbol svc-q2" x="18" y="4" fill="var(--accent)" stroke="none" font-size="4.5" font-family="var(--font-mono)">?</text>
-                            <text class="svc-symbol svc-tick" x="20" y="10" fill="var(--accent)" stroke="none" font-size="6" font-family="var(--font-mono)">&#x2713;</text>
+                            <text class="svc-symbol svc-q1" x="1" y="6" fill="var(--accent)" stroke="none" font-size="5"
+                                font-family="var(--font-mono)">?</text>
+                            <text class="svc-symbol svc-q2" x="18" y="4" fill="var(--accent)" stroke="none"
+                                font-size="4.5" font-family="var(--font-mono)">?</text>
+                            <text class="svc-symbol svc-tick" x="20" y="10" fill="var(--accent)" stroke="none"
+                                font-size="6" font-family="var(--font-mono)">&#x2713;</text>
                         </svg>
                     </div>
                     <div class="service-name">Location Audio Consulting</div>
@@ -1932,15 +2476,17 @@
                     <div class="service-icon svc-icon-photo">
                         <svg viewBox="0 0 24 24" stroke-width="1.6">
                             <!-- Camera body -->
-                            <rect x="2" y="7" width="20" height="13" rx="2"/>
+                            <rect x="2" y="7" width="20" height="13" rx="2" />
                             <!-- Lens -->
-                            <circle cx="12" cy="14" r="4"/>
-                            <circle cx="12" cy="14" r="1.5" stroke-width="1"/>
+                            <circle cx="12" cy="14" r="4" />
+                            <circle cx="12" cy="14" r="1.5" stroke-width="1" />
                             <!-- Viewfinder bump -->
-                            <path d="M8 7V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/>
+                            <path d="M8 7V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2" />
                             <!-- Flash burst -->
-                            <circle class="svc-flash" cx="12" cy="13" r="10" fill="rgba(201,169,110,0.15)" stroke="none"/>
-                            <circle class="svc-flash" cx="12" cy="13" r="5" fill="rgba(201,169,110,0.25)" stroke="none"/>
+                            <circle class="svc-flash" cx="12" cy="13" r="10" fill="rgba(201,169,110,0.15)"
+                                stroke="none" />
+                            <circle class="svc-flash" cx="12" cy="13" r="5" fill="rgba(201,169,110,0.25)"
+                                stroke="none" />
                         </svg>
                     </div>
                     <div class="service-name">Photography &amp; Media</div>
@@ -1961,10 +2507,14 @@
             <a href="mailto:contact@waterforge.com.au" class="contact-email reveal">contact@waterforge.com.au</a>
 
             <div class="contact-socials reveal">
-                <a href="https://www.linkedin.com/in/damon-sheridan/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://www.imdb.com/name/nm7138208/" target="_blank" rel="noopener" aria-label="IMDb"><i class="fab fa-imdb"></i></a>
-                <a href="https://www.youtube.com/@waterforge5468" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.facebook.com/WaterForge/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/damon-sheridan/" target="_blank" rel="noopener"
+                    aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.imdb.com/name/nm7138208/" target="_blank" rel="noopener" aria-label="IMDb"><i
+                        class="fab fa-imdb"></i></a>
+                <a href="https://www.youtube.com/@waterforge5468" target="_blank" rel="noopener" aria-label="YouTube"><i
+                        class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/WaterForge/" target="_blank" rel="noopener" aria-label="Facebook"><i
+                        class="fab fa-facebook-f"></i></a>
             </div>
 
             <p class="contact-location reveal">Brisbane &middot; Gold Coast &middot; Queensland &middot; Worldwide</p>
@@ -1977,11 +2527,14 @@
         <div class="container">
             <div class="footer-wordmark">Waterforge</div>
             <div class="footer-links">
-                <a href="https://www.linkedin.com/in/damon-sheridan/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://www.imdb.com/name/nm7138208/" target="_blank" rel="noopener" aria-label="IMDb"><i class="fab fa-imdb"></i></a>
+                <a href="https://www.linkedin.com/in/damon-sheridan/" target="_blank" rel="noopener"
+                    aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.imdb.com/name/nm7138208/" target="_blank" rel="noopener" aria-label="IMDb"><i
+                        class="fab fa-imdb"></i></a>
                 <a href="mailto:contact@waterforge.com.au" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
-            <p class="footer-copy">&copy; <span id="footerYear"></span> Waterforge / Damon Sheridan. Brisbane, Australia.</p>
+            <p class="footer-copy">&copy; <span id="footerYear"></span> Waterforge / Damon Sheridan. Brisbane,
+                Australia.</p>
         </div>
     </footer>
 
@@ -1990,13 +2543,13 @@
         document.getElementById('footerYear').textContent = new Date().getFullYear();
 
         // Service card expand on dropdown navigation
-        (function() {
+        (function () {
             var svcIds = ['svc-sound', 'svc-editing', 'svc-consulting', 'svc-photo'];
             var expandTimer = null;
 
             function expandCard(id) {
                 // Remove expanded from all
-                svcIds.forEach(function(sid) {
+                svcIds.forEach(function (sid) {
                     var el = document.getElementById(sid);
                     if (el) el.classList.remove('svc-expanded');
                 });
@@ -2004,15 +2557,15 @@
                 if (target) {
                     target.classList.add('svc-expanded');
                     clearTimeout(expandTimer);
-                    expandTimer = setTimeout(function() {
+                    expandTimer = setTimeout(function () {
                         target.classList.remove('svc-expanded');
                     }, 6000);
                 }
             }
 
             // Listen to clicks on dropdown and mobile sub-links
-            document.querySelectorAll('a[href^="#svc-"]').forEach(function(link) {
-                link.addEventListener('click', function(e) {
+            document.querySelectorAll('a[href^="#svc-"]').forEach(function (link) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     var id = this.getAttribute('href').substring(1);
                     var target = document.getElementById(id);
@@ -2022,16 +2575,16 @@
                         var viewH = window.innerHeight - navH;
                         var scrollTo = window.scrollY + rect.top - navH - Math.max(0, (viewH - rect.height) / 2);
                         window.scrollTo({ top: Math.max(0, scrollTo), behavior: 'smooth' });
-                        setTimeout(function() { expandCard(id); }, 400);
+                        setTimeout(function () { expandCard(id); }, 400);
                     }
                 });
             });
 
             // Also trigger on hash change (e.g. direct URL)
-            window.addEventListener('hashchange', function() {
+            window.addEventListener('hashchange', function () {
                 var hash = window.location.hash.substring(1);
                 if (svcIds.indexOf(hash) !== -1) {
-                    setTimeout(function() { expandCard(hash); }, 300);
+                    setTimeout(function () { expandCard(hash); }, 300);
                 }
             });
 
@@ -2039,13 +2592,13 @@
             if (window.location.hash) {
                 var hash = window.location.hash.substring(1);
                 if (svcIds.indexOf(hash) !== -1) {
-                    setTimeout(function() { expandCard(hash); }, 500);
+                    setTimeout(function () { expandCard(hash); }, 500);
                 }
             }
         })();
 
         // Rotating project highlights — randomly picks 4 each visit
-        (function() {
+        (function () {
             var projects = [
                 {
                     name: 'Anaconda',
@@ -2183,7 +2736,7 @@
             // Walking animation: play while scrolling, pause after stopping
             navCrew.classList.add('walking');
             clearTimeout(walkTimeout);
-            walkTimeout = setTimeout(function() {
+            walkTimeout = setTimeout(function () {
                 navCrew.classList.remove('walking');
             }, 150);
 
@@ -2191,9 +2744,9 @@
         }
 
         var crewTicking = false;
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             if (!crewTicking) {
-                window.requestAnimationFrame(function() {
+                window.requestAnimationFrame(function () {
                     updateCrew();
                     crewTicking = false;
                 });
@@ -2223,7 +2776,7 @@
             document.body.style.overflow = '';
         }
 
-        hamburger.addEventListener('click', function() {
+        hamburger.addEventListener('click', function () {
             if (mobileNav.classList.contains('open')) {
                 closeMobileNav();
             } else {
@@ -2231,20 +2784,20 @@
             }
         });
 
-        mobileClose.addEventListener('click', function() {
+        mobileClose.addEventListener('click', function () {
             closeMobileNav();
         });
 
-        document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
-            link.addEventListener('click', function() {
+        document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+            link.addEventListener('click', function () {
                 closeMobileNav();
             });
         });
 
         // Scroll-triggered reveal animations
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            var observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                         observer.unobserve(entry.target);
@@ -2252,20 +2805,21 @@
                 });
             }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-            document.querySelectorAll('.reveal').forEach(function(el) {
+            document.querySelectorAll('.reveal').forEach(function (el) {
                 observer.observe(el);
             });
 
             // Trigger hero animations immediately
-            document.querySelectorAll('.hero .reveal').forEach(function(el) {
+            document.querySelectorAll('.hero .reveal').forEach(function (el) {
                 el.classList.add('visible');
             });
         } else {
-            document.querySelectorAll('.reveal').forEach(function(el) {
+            document.querySelectorAll('.reveal').forEach(function (el) {
                 el.classList.add('visible');
             });
         }
     </script>
 
 </body>
+
 </html>
